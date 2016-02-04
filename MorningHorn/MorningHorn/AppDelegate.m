@@ -16,6 +16,25 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    UILocalNotification *localNotif = [launchOptions objectForKey:UIApplicationLaunchOptionsLocalNotificationKey];
+    if (localNotif)
+    {
+        NSLog(@"Recieved Notification %@",localNotif);
+        NSDictionary* infoDic = localNotif.userInfo;
+        NSLog(@"userInfo description=%@",[infoDic description]);
+        NSString* codeStr = [infoDic objectForKey:@"code"];
+        NSLog(@"codestr:%@",codeStr);
+    }
+    
+    if ([[UIApplication sharedApplication] respondsToSelector:@selector(registerUserNotificationSettings:)]) {
+        UIUserNotificationType type =  UIUserNotificationTypeAlert | UIUserNotificationTypeSound;
+        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:type
+                                                                                 categories:nil];
+        [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+        // 通知重复提示的单位，可以是天、周、月
+    }
+    
     // Override point for customization after application launch.
     return YES;
 }

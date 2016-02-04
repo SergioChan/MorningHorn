@@ -14,7 +14,6 @@
 		50D38CFC1C59FAB200D46B57 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50D38CFA1C59FAB200D46B57 /* LaunchScreen.storyboard */; };
 		50D38D071C59FAB200D46B57 /* MorningHornTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D38D061C59FAB200D46B57 /* MorningHornTests.m */; };
 		50D38D121C59FAB200D46B57 /* MorningHornUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D38D111C59FAB200D46B57 /* MorningHornUITests.m */; };
-		50D38D2B1C5A020A00D46B57 /* Alarm.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D38D2A1C5A020A00D46B57 /* Alarm.m */; };
 		50D38D2F1C5A02BB00D46B57 /* MHListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D38D2E1C5A02BB00D46B57 /* MHListViewController.m */; };
 		50D38D321C5A02E600D46B57 /* MHCreateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D38D311C5A02E600D46B57 /* MHCreateViewController.m */; };
 		50D38D351C5A089D00D46B57 /* UIView+ViewFrameGeometry.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D38D331C5A089D00D46B57 /* UIView+ViewFrameGeometry.m */; };
@@ -23,6 +22,12 @@
 		50D38D3E1C5B1AF500D46B57 /* MHWheelPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D38D3D1C5B1AF500D46B57 /* MHWheelPickerView.m */; };
 		50D38D411C5C770F00D46B57 /* HexColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D38D401C5C770F00D46B57 /* HexColors.m */; };
 		50D38D441C5F0E0400D46B57 /* MHWheelPickerBackView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D38D431C5F0E0400D46B57 /* MHWheelPickerBackView.m */; };
+		50D38D471C5F2E8600D46B57 /* MHListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D38D461C5F2E8600D46B57 /* MHListTableViewCell.m */; };
+		50D38D4A1C5F2FDD00D46B57 /* MHTimeString.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D38D491C5F2FDD00D46B57 /* MHTimeString.m */; };
+		50D38D4D1C5F2FEC00D46B57 /* MHAlarm.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D38D4C1C5F2FEC00D46B57 /* MHAlarm.m */; };
+		50E035AB1C5F36F100353DBB /* MHWeekDayThumbnailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50E035AA1C5F36F100353DBB /* MHWeekDayThumbnailView.m */; };
+		50E035AE1C5F36FE00353DBB /* MHWeekDayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50E035AD1C5F36FE00353DBB /* MHWeekDayView.m */; };
+		50E035F01C5F566600353DBB /* MHLocalNotificationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 50E035EF1C5F566600353DBB /* MHLocalNotificationManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,8 +62,6 @@
 		50D38D0D1C59FAB200D46B57 /* MorningHornUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MorningHornUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		50D38D111C59FAB200D46B57 /* MorningHornUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MorningHornUITests.m; sourceTree = "<group>"; };
 		50D38D131C59FAB200D46B57 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		50D38D291C5A020A00D46B57 /* Alarm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Alarm.h; sourceTree = "<group>"; };
-		50D38D2A1C5A020A00D46B57 /* Alarm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Alarm.m; sourceTree = "<group>"; };
 		50D38D2C1C5A029900D46B57 /* MHHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MHHeader.h; sourceTree = "<group>"; };
 		50D38D2D1C5A02BB00D46B57 /* MHListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHListViewController.h; sourceTree = "<group>"; };
 		50D38D2E1C5A02BB00D46B57 /* MHListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHListViewController.m; sourceTree = "<group>"; };
@@ -76,6 +79,18 @@
 		50D38D401C5C770F00D46B57 /* HexColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HexColors.m; sourceTree = "<group>"; };
 		50D38D421C5F0E0400D46B57 /* MHWheelPickerBackView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHWheelPickerBackView.h; sourceTree = "<group>"; };
 		50D38D431C5F0E0400D46B57 /* MHWheelPickerBackView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHWheelPickerBackView.m; sourceTree = "<group>"; };
+		50D38D451C5F2E8600D46B57 /* MHListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHListTableViewCell.h; sourceTree = "<group>"; };
+		50D38D461C5F2E8600D46B57 /* MHListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHListTableViewCell.m; sourceTree = "<group>"; };
+		50D38D481C5F2FDD00D46B57 /* MHTimeString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHTimeString.h; sourceTree = "<group>"; };
+		50D38D491C5F2FDD00D46B57 /* MHTimeString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHTimeString.m; sourceTree = "<group>"; };
+		50D38D4B1C5F2FEC00D46B57 /* MHAlarm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHAlarm.h; sourceTree = "<group>"; };
+		50D38D4C1C5F2FEC00D46B57 /* MHAlarm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHAlarm.m; sourceTree = "<group>"; };
+		50E035A91C5F36F100353DBB /* MHWeekDayThumbnailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHWeekDayThumbnailView.h; sourceTree = "<group>"; };
+		50E035AA1C5F36F100353DBB /* MHWeekDayThumbnailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHWeekDayThumbnailView.m; sourceTree = "<group>"; };
+		50E035AC1C5F36FE00353DBB /* MHWeekDayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHWeekDayView.h; sourceTree = "<group>"; };
+		50E035AD1C5F36FE00353DBB /* MHWeekDayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHWeekDayView.m; sourceTree = "<group>"; };
+		50E035EE1C5F566600353DBB /* MHLocalNotificationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHLocalNotificationManager.h; sourceTree = "<group>"; };
+		50E035EF1C5F566600353DBB /* MHLocalNotificationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHLocalNotificationManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +141,7 @@
 		50D38CEB1C59FAB200D46B57 /* MorningHorn */ = {
 			isa = PBXGroup;
 			children = (
+				50E035FA1C60D5AC00353DBB /* Resource */,
 				50D38D221C59FBD100D46B57 /* Utils */,
 				50D38D211C59FBCB00D46B57 /* Model */,
 				50D38D201C59FBC300D46B57 /* Controller */,
@@ -177,6 +193,12 @@
 				50D38D3D1C5B1AF500D46B57 /* MHWheelPickerView.m */,
 				50D38D421C5F0E0400D46B57 /* MHWheelPickerBackView.h */,
 				50D38D431C5F0E0400D46B57 /* MHWheelPickerBackView.m */,
+				50D38D451C5F2E8600D46B57 /* MHListTableViewCell.h */,
+				50D38D461C5F2E8600D46B57 /* MHListTableViewCell.m */,
+				50E035A91C5F36F100353DBB /* MHWeekDayThumbnailView.h */,
+				50E035AA1C5F36F100353DBB /* MHWeekDayThumbnailView.m */,
+				50E035AC1C5F36FE00353DBB /* MHWeekDayView.h */,
+				50E035AD1C5F36FE00353DBB /* MHWeekDayView.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -195,8 +217,10 @@
 		50D38D211C59FBCB00D46B57 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				50D38D291C5A020A00D46B57 /* Alarm.h */,
-				50D38D2A1C5A020A00D46B57 /* Alarm.m */,
+				50D38D481C5F2FDD00D46B57 /* MHTimeString.h */,
+				50D38D491C5F2FDD00D46B57 /* MHTimeString.m */,
+				50D38D4B1C5F2FEC00D46B57 /* MHAlarm.h */,
+				50D38D4C1C5F2FEC00D46B57 /* MHAlarm.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -210,8 +234,17 @@
 				50D38D341C5A089D00D46B57 /* UIView+ViewFrameGeometry.h */,
 				50D38D361C5B1A5400D46B57 /* MHRotateGestureRecognizer.h */,
 				50D38D371C5B1A5400D46B57 /* MHRotateGestureRecognizer.m */,
+				50E035EE1C5F566600353DBB /* MHLocalNotificationManager.h */,
+				50E035EF1C5F566600353DBB /* MHLocalNotificationManager.m */,
 			);
 			name = Utils;
+			sourceTree = "<group>";
+		};
+		50E035FA1C60D5AC00353DBB /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Resource;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -347,14 +380,19 @@
 				50D38D3B1C5B1AE700D46B57 /* MHWheelItemView.m in Sources */,
 				50D38D441C5F0E0400D46B57 /* MHWheelPickerBackView.m in Sources */,
 				50D38CF11C59FAB200D46B57 /* AppDelegate.m in Sources */,
+				50E035AB1C5F36F100353DBB /* MHWeekDayThumbnailView.m in Sources */,
 				50D38D351C5A089D00D46B57 /* UIView+ViewFrameGeometry.m in Sources */,
+				50D38D471C5F2E8600D46B57 /* MHListTableViewCell.m in Sources */,
+				50D38D4A1C5F2FDD00D46B57 /* MHTimeString.m in Sources */,
 				50D38D321C5A02E600D46B57 /* MHCreateViewController.m in Sources */,
 				50D38D2F1C5A02BB00D46B57 /* MHListViewController.m in Sources */,
+				50E035F01C5F566600353DBB /* MHLocalNotificationManager.m in Sources */,
 				50D38CEE1C59FAB200D46B57 /* main.m in Sources */,
-				50D38D2B1C5A020A00D46B57 /* Alarm.m in Sources */,
 				50D38D381C5B1A5400D46B57 /* MHRotateGestureRecognizer.m in Sources */,
 				50D38D3E1C5B1AF500D46B57 /* MHWheelPickerView.m in Sources */,
 				50D38D411C5C770F00D46B57 /* HexColors.m in Sources */,
+				50E035AE1C5F36FE00353DBB /* MHWeekDayView.m in Sources */,
+				50D38D4D1C5F2FEC00D46B57 /* MHAlarm.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -582,6 +620,7 @@
 				50D38D181C59FAB200D46B57 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		50D38D191C59FAB200D46B57 /* Build configuration list for PBXNativeTarget "MorningHornTests" */ = {
 			isa = XCConfigurationList;
@@ -590,6 +629,7 @@
 				50D38D1B1C59FAB200D46B57 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		50D38D1C1C59FAB200D46B57 /* Build configuration list for PBXNativeTarget "MorningHornUITests" */ = {
 			isa = XCConfigurationList;
@@ -598,6 +638,7 @@
 				50D38D1E1C59FAB200D46B57 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

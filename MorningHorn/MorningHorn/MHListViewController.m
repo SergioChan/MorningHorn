@@ -9,12 +9,15 @@
 #import "MHListViewController.h"
 #import "MHHeader.h"
 #import "MHWheelPickerBackView.h"
+#import "MHListTableViewCell.h"
 
-@interface MHListViewController ()<MHWheelPickerViewDelegate>
+@interface MHListViewController ()<MHWheelPickerViewDelegate,UITableViewDataSource,UITableViewDelegate>
 
 @property (nonatomic, strong) MHWheelPickerView *hourPickerView;
 @property (nonatomic, strong) MHWheelPickerView *minutePickerView;
+@property (nonatomic, strong) UITableView *tableView;
 
+@property (nonatomic, strong) NSMutableArray *alarmArray;
 @end
 
 @implementation MHListViewController
@@ -32,7 +35,8 @@
     [super viewDidLoad];
     
     self.view.backgroundColor = MHBackgroundPurpleColor;
-
+    self.alarmArray = [NSMutableArray arrayWithObjects:@"09:45",@"20:30",@"05:46",nil];
+    
     self.hourPickerView = [[MHWheelPickerView alloc]initWithFrame:CGRectMake(-150.0f, - (ScreenWidth + 300.0f)/2.0f - 200.0f, ScreenWidth + 300.0f, ScreenWidth + 300.0f) delegate:self type:MHPickerHour];
 
     MHWheelPickerBackView *hourBackView = [[MHWheelPickerBackView alloc]initWithFrame:_hourPickerView.frame type:MHPickerHour];
@@ -47,6 +51,19 @@
     [self.view addSubview:_minutePickerView];
     [self.view addSubview:_hourPickerView];
     
+//    _hourPickerView.userInteractionEnabled = NO;
+//    _minutePickerView.userInteractionEnabled = NO;
+    
+    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0.0f, _minutePickerView.bottom + 80.0f, ScreenWidth, ScreenHeight - _minutePickerView.bottom - 80.0f) style:UITableViewStylePlain];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    self.tableView.backgroundColor = [UIColor clearColor];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.tableView.showsHorizontalScrollIndicator = NO;
+    self.tableView.showsVerticalScrollIndicator = NO;
+    self.tableView.bounces = YES;
+    
+    [self.view addSubview:_tableView];
     // Do any additional setup after loading the view.
 }
 
@@ -71,7 +88,32 @@
         NSLog(@"minute: %ld",index);
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 100.0f;
+}
 
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 3;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    MHListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ListCell"];
+    if(!cell)
+    {
+        cell = [[MHListTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"ListCell"];
+    }
+    cell.dateLabel.text = [self.alarmArray objectAtIndex:indexPath.row];
+    
+    return cell;
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
 /*
 #pragma mark - Navigation
 
