@@ -23,6 +23,9 @@
         _dateLabel.textColor = [UIColor whiteColor];
         _dateLabel.textAlignment = NSTextAlignmentLeft;
         [self.contentView addSubview:_dateLabel];
+        
+        self.weekDayView = [[MHWeekDayThumbnailView alloc]initWithFrame:CGRectMake(40.0f, _dateLabel.bottom + 10.0f, 150.0f, 15.0f) weekDayArray:[NSMutableArray array]];
+        [self.contentView addSubview:_weekDayView];
     }
     return self;
 }

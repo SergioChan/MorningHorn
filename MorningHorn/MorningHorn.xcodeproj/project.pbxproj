@@ -28,6 +28,7 @@
 		50E035AB1C5F36F100353DBB /* MHWeekDayThumbnailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50E035AA1C5F36F100353DBB /* MHWeekDayThumbnailView.m */; };
 		50E035AE1C5F36FE00353DBB /* MHWeekDayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50E035AD1C5F36FE00353DBB /* MHWeekDayView.m */; };
 		50E035F01C5F566600353DBB /* MHLocalNotificationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 50E035EF1C5F566600353DBB /* MHLocalNotificationManager.m */; };
+		50E035FD1C64EC4000353DBB /* MHSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 50E035FC1C64EC4000353DBB /* MHSwitch.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,6 +92,8 @@
 		50E035AD1C5F36FE00353DBB /* MHWeekDayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHWeekDayView.m; sourceTree = "<group>"; };
 		50E035EE1C5F566600353DBB /* MHLocalNotificationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHLocalNotificationManager.h; sourceTree = "<group>"; };
 		50E035EF1C5F566600353DBB /* MHLocalNotificationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHLocalNotificationManager.m; sourceTree = "<group>"; };
+		50E035FB1C64EC4000353DBB /* MHSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHSwitch.h; sourceTree = "<group>"; };
+		50E035FC1C64EC4000353DBB /* MHSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHSwitch.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -199,6 +202,8 @@
 				50E035AA1C5F36F100353DBB /* MHWeekDayThumbnailView.m */,
 				50E035AC1C5F36FE00353DBB /* MHWeekDayView.h */,
 				50E035AD1C5F36FE00353DBB /* MHWeekDayView.m */,
+				50E035FB1C64EC4000353DBB /* MHSwitch.h */,
+				50E035FC1C64EC4000353DBB /* MHSwitch.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -391,6 +396,7 @@
 				50D38D381C5B1A5400D46B57 /* MHRotateGestureRecognizer.m in Sources */,
 				50D38D3E1C5B1AF500D46B57 /* MHWheelPickerView.m in Sources */,
 				50D38D411C5C770F00D46B57 /* HexColors.m in Sources */,
+				50E035FD1C64EC4000353DBB /* MHSwitch.m in Sources */,
 				50E035AE1C5F36FE00353DBB /* MHWeekDayView.m in Sources */,
 				50D38D4D1C5F2FEC00D46B57 /* MHAlarm.m in Sources */,
 			);

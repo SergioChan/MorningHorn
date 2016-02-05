@@ -8,9 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "MHHeader.h"
+#import "MHAlarm.h"
 
 @interface MHWeekDayThumbnailView : UIView
 
 @property (nonatomic,strong) NSMutableArray *weekDayArray;
+
+- (instancetype)initWithFrame:(CGRect)frame weekDayArray:(NSMutableArray *)array;
+- (void)reloadDataByWeekDayArray:(NSMutableArray *)array;
 
 @end

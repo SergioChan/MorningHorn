@@ -9,10 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "MHAlarm.h"
 #import "MHHeader.h"
+#import "MHWeekDayThumbnailView.h"
 
 @interface MHListTableViewCell : UITableViewCell
 
 @property (nonatomic,strong) UILabel *dateLabel;
 @property (nonatomic,strong) MHAlarm *alarmModel;
+@property (nonatomic,strong) MHWeekDayThumbnailView *weekDayView;
 
 @end

@@ -17,6 +17,7 @@
 
 #define MHBackgroundPurpleColor [UIColor colorWithRed:75/255.0f green:31/255.0f blue:156/255.0f alpha:1.0f];
 #define MHBackgroundPurpleColor_medium [UIColor colorWithRed:94/255.0f green:49/255.0f blue:182/255.0f alpha:1.0f];
+#define MHBackgroundPurpleColor_dark [UIColor colorWithRed:52/255.0f green:7/255.0f blue:130/255.0f alpha:1.0f];
 
 #define MHBackgroundYellowColor [UIColor colorWithRed:251/255.0f green:229/255.0f blue:84/255.0f alpha:1.0f];
 

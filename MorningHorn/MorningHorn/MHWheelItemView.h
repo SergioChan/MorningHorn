@@ -16,7 +16,7 @@
 @property (nonatomic, assign) CGFloat startRadians;
 @property (nonatomic, assign) CGFloat endRadians;
 @property (nonatomic, assign) CGFloat radius;
-@property (nonatomic) BOOL isHighlighted;
+@property (nonatomic)         BOOL isHighlighted;
 
 - (instancetype)initWithWidth:(CGFloat)width number:(NSInteger)number totalNumber:(NSInteger)total;
 

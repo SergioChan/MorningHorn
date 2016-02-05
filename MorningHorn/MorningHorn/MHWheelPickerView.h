@@ -28,10 +28,10 @@ typedef NS_ENUM(NSInteger, MHPickerType) {
 @interface MHWheelPickerView : UIView
 
 @property (nonatomic, assign, readonly) NSInteger numberOfItems;
-@property (nonatomic, assign) NSInteger selectedIndex;
-@property (nonatomic, assign) MHPickerType type;
+@property (nonatomic, assign)           NSInteger selectedIndex;
+@property (nonatomic, assign)           MHPickerType type;
 
-@property (nonatomic, weak) id<MHWheelPickerViewDelegate> delegate;
+@property (nonatomic, weak)             id<MHWheelPickerViewDelegate> delegate;
 
 - (instancetype)initWithFrame:(CGRect)frame delegate:(id)delegateSource type:(MHPickerType)type;
 @end
