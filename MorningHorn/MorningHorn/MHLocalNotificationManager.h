@@ -9,8 +9,12 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import "MHAlarm.h"
+#import "MHHeader.h"
 
 @interface MHLocalNotificationManager : NSObject
 
 + (MHLocalNotificationManager *) sharedInstance;
+
+- (void)registerAlarm:(MHAlarm *)alarm;
+- (void)cancelAlarm:(NSInteger)alarmId;
 @end

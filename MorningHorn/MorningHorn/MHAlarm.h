@@ -9,6 +9,16 @@
 #import <Foundation/Foundation.h>
 #import "MHTimeString.h"
 
+typedef NS_ENUM(NSInteger, MHWeekDay) {
+    MHSunday = 1,
+    MHMonday = 2,
+    MHTuesDay = 3,
+    MHWednesday = 4,
+    MHThursDay = 5,
+    MHFriday = 6,
+    MHSaturday = 7,
+};
+
 @interface MHAlarm : NSObject
 
 @property (nonatomic,strong) MHTimeString *timeString;

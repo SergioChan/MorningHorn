@@ -10,9 +10,6 @@
 #define MHHeader_h
 
 #import "UIView+ViewFrameGeometry.h"
-#import "MHRotateGestureRecognizer.h"
-#import "MHWheelPickerView.h"
-#import "MHWheelItemView.h"
 #import "HexColors.h"
 
 #define DEGREES_TO_RADIANS(d) ((d) * M_PI / 180)
@@ -26,4 +23,6 @@
 #define MinuteFontSize 35.0f
 #define HourFontSize 55.0f
 #define HightlightedFontName @"Arial Rounded MT Bold"
+
+#define NotificationTitle @"Horn is rising!"
 #endif /* MHHeader_h */

@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "MHHeader.h"
+#import "MHRotateGestureRecognizer.h"
+#import "MHWheelItemView.h"
 
 typedef NS_ENUM(NSInteger, MHPickerType) {
     MHPickerHour = 0,

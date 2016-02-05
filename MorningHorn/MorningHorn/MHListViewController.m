@@ -10,6 +10,9 @@
 #import "MHHeader.h"
 #import "MHWheelPickerBackView.h"
 #import "MHListTableViewCell.h"
+#import "MHRotateGestureRecognizer.h"
+#import "MHWheelPickerView.h"
+#import "MHWheelItemView.h"
 
 @interface MHListViewController ()<MHWheelPickerViewDelegate,UITableViewDataSource,UITableViewDelegate>
 
