@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "MHHeader.h"
 #import "MHAlarm.h"
+#import "MHWeekDayThumbnailCircleView.h"
 
 @interface MHWeekDayThumbnailView : UIView
 

@@ -12,13 +12,13 @@
 
 // Only for private access
 
-@property (nonatomic,strong) UIView *MondayCircleView;
-@property (nonatomic,strong) UIView *ThuesdayCircleView;
-@property (nonatomic,strong) UIView *WednesdayCircleView;
-@property (nonatomic,strong) UIView *ThursdayCircleView;
-@property (nonatomic,strong) UIView *FridayCircleView;
-@property (nonatomic,strong) UIView *SaturdayCircleView;
-@property (nonatomic,strong) UIView *SundayCircleView;
+@property (nonatomic,strong) MHWeekDayThumbnailCircleView *MondayCircleView;
+@property (nonatomic,strong) MHWeekDayThumbnailCircleView *ThuesdayCircleView;
+@property (nonatomic,strong) MHWeekDayThumbnailCircleView *WednesdayCircleView;
+@property (nonatomic,strong) MHWeekDayThumbnailCircleView *ThursdayCircleView;
+@property (nonatomic,strong) MHWeekDayThumbnailCircleView *FridayCircleView;
+@property (nonatomic,strong) MHWeekDayThumbnailCircleView *SaturdayCircleView;
+@property (nonatomic,strong) MHWeekDayThumbnailCircleView *SundayCircleView;
 
 @end
 
@@ -38,60 +38,15 @@
 - (void)initSubViews
 {
     CGFloat margin = (self.width - 7 * self.height ) / 6.0f;
-    CGFloat height = self.height / 2.0f;
-    CGFloat shadowOffset = 0.5f;
-    CGFloat shadowOpacity = 0.4f;
-    CGFloat shadowRadius = 0.3f;
     
-    self.MondayCircleView = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, self.height, self.height)];
-    _MondayCircleView.layer.cornerRadius = height;
-    _MondayCircleView.layer.shadowOffset = CGSizeMake(0, shadowOffset);
-    _MondayCircleView.layer.shadowOpacity = shadowOpacity;
-    _MondayCircleView.layer.shadowRadius = shadowRadius;
-    _MondayCircleView.layer.shadowColor = [UIColor colorWithRed:251/255.0f green:229/255.0f blue:84/255.0f alpha:1.0f].CGColor;
-    
-    self.ThuesdayCircleView = [[UIView alloc]initWithFrame:CGRectMake(_MondayCircleView.right + margin, 0.0f, self.height, self.height)];
-    _ThuesdayCircleView.layer.cornerRadius = height;
-    _ThuesdayCircleView.layer.shadowOffset = CGSizeMake(0, shadowOffset);
-    _ThuesdayCircleView.layer.shadowOpacity = shadowOpacity;
-    _ThuesdayCircleView.layer.shadowRadius = shadowRadius;
-    _ThuesdayCircleView.layer.shadowColor = [UIColor colorWithRed:251/255.0f green:229/255.0f blue:84/255.0f alpha:1.0f].CGColor;
-    
-    self.WednesdayCircleView = [[UIView alloc]initWithFrame:CGRectMake(_ThuesdayCircleView.right + margin, 0.0f, self.height, self.height)];
-    _WednesdayCircleView.layer.cornerRadius = height;
-    _WednesdayCircleView.layer.shadowOffset = CGSizeMake(0, shadowOffset);
-    _WednesdayCircleView.layer.shadowOpacity = shadowOpacity;
-    _WednesdayCircleView.layer.shadowRadius = shadowRadius;
-    _WednesdayCircleView.layer.shadowColor = [UIColor colorWithRed:251/255.0f green:229/255.0f blue:84/255.0f alpha:1.0f].CGColor;
-    
-    self.ThursdayCircleView = [[UIView alloc]initWithFrame:CGRectMake(_WednesdayCircleView.right + margin, 0.0f, self.height, self.height)];
-    _ThursdayCircleView.layer.cornerRadius = height;
-    _ThursdayCircleView.layer.shadowOffset = CGSizeMake(0, shadowOffset);
-    _ThursdayCircleView.layer.shadowOpacity = shadowOpacity;
-    _ThursdayCircleView.layer.shadowRadius = shadowRadius;
-    _ThursdayCircleView.layer.shadowColor = [UIColor colorWithRed:251/255.0f green:229/255.0f blue:84/255.0f alpha:1.0f].CGColor;
-    
-    self.FridayCircleView = [[UIView alloc]initWithFrame:CGRectMake(_ThursdayCircleView.right + margin, 0.0f, self.height, self.height)];
-    _FridayCircleView.layer.cornerRadius = height;
-    _FridayCircleView.layer.shadowOffset = CGSizeMake(0, shadowOffset);
-    _FridayCircleView.layer.shadowOpacity = shadowOpacity;
-    _FridayCircleView.layer.shadowRadius = shadowRadius;
-    _FridayCircleView.layer.shadowColor = [UIColor colorWithRed:251/255.0f green:229/255.0f blue:84/255.0f alpha:1.0f].CGColor;
-    
-    self.SaturdayCircleView = [[UIView alloc]initWithFrame:CGRectMake(_FridayCircleView.right + margin, 0.0f, self.height, self.height)];
-    _SaturdayCircleView.layer.cornerRadius = height;
-    _SaturdayCircleView.layer.shadowOffset = CGSizeMake(0, shadowOffset);
-    _SaturdayCircleView.layer.shadowOpacity = shadowOpacity;
-    _SaturdayCircleView.layer.shadowRadius = shadowRadius;
-    _SaturdayCircleView.layer.shadowColor = [UIColor colorWithRed:251/255.0f green:229/255.0f blue:84/255.0f alpha:1.0f].CGColor;
-    
-    self.SundayCircleView = [[UIView alloc]initWithFrame:CGRectMake(_SaturdayCircleView.right + margin, 0.0f, self.height, self.height)];
-    _SundayCircleView.layer.cornerRadius = height;
-    _SundayCircleView.layer.shadowOffset = CGSizeMake(0, shadowOffset);
-    _SundayCircleView.layer.shadowOpacity = shadowOpacity;
-    _SundayCircleView.layer.shadowRadius = shadowRadius;
-    _SundayCircleView.layer.shadowColor = [UIColor colorWithRed:251/255.0f green:229/255.0f blue:84/255.0f alpha:1.0f].CGColor;
-    
+    self.MondayCircleView = [[MHWeekDayThumbnailCircleView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, self.height, self.height)];
+    self.ThuesdayCircleView = [[MHWeekDayThumbnailCircleView alloc]initWithFrame:CGRectMake(_MondayCircleView.right + margin, 0.0f, self.height, self.height)];
+    self.WednesdayCircleView = [[MHWeekDayThumbnailCircleView alloc]initWithFrame:CGRectMake(_ThuesdayCircleView.right + margin, 0.0f, self.height, self.height)];
+    self.ThursdayCircleView = [[MHWeekDayThumbnailCircleView alloc]initWithFrame:CGRectMake(_WednesdayCircleView.right + margin, 0.0f, self.height, self.height)];
+    self.FridayCircleView = [[MHWeekDayThumbnailCircleView alloc]initWithFrame:CGRectMake(_ThursdayCircleView.right + margin, 0.0f, self.height, self.height)];
+    self.SaturdayCircleView = [[MHWeekDayThumbnailCircleView alloc]initWithFrame:CGRectMake(_FridayCircleView.right + margin, 0.0f, self.height, self.height)];
+    self.SundayCircleView = [[MHWeekDayThumbnailCircleView alloc]initWithFrame:CGRectMake(_SaturdayCircleView.right + margin, 0.0f, self.height, self.height)];
+   
     [self addSubview:_MondayCircleView];
     [self addSubview:_ThuesdayCircleView];
     [self addSubview:_WednesdayCircleView];
@@ -108,36 +63,38 @@
 
 - (void)processWeekDayArray:(NSMutableArray *)array
 {
-    _MondayCircleView.backgroundColor = MHBackgroundPurpleColor_dark;
-    _ThursdayCircleView.backgroundColor = MHBackgroundPurpleColor_dark;
-    _WednesdayCircleView.backgroundColor = MHBackgroundPurpleColor_dark;
-    _ThuesdayCircleView.backgroundColor = MHBackgroundPurpleColor_dark;
-    _FridayCircleView.backgroundColor = MHBackgroundPurpleColor_dark;
-    _SaturdayCircleView.backgroundColor = MHBackgroundPurpleColor_dark;
-    _SundayCircleView.backgroundColor = MHBackgroundPurpleColor_dark;
+    UIColor *darkPurple = MHBackgroundPurpleColor_dark;
+    UIColor *yellow = MHBackgroundYellowColor;
+    [_MondayCircleView setSelected:NO color:darkPurple];
+    [_ThursdayCircleView setSelected:NO color:darkPurple];
+    [_WednesdayCircleView setSelected:NO color:darkPurple];
+    [_ThuesdayCircleView setSelected:NO color:darkPurple];
+    [_FridayCircleView setSelected:NO color:darkPurple];
+    [_SaturdayCircleView setSelected:NO color:darkPurple];
+    [_SundayCircleView setSelected:NO color:darkPurple];
     
     for(id object in array) {
         switch ([object integerValue]) {
             case MHMonday:
-                _MondayCircleView.backgroundColor = MHBackgroundYellowColor;
+                [_MondayCircleView setSelected:YES color:yellow];
                 break;
             case MHTuesDay:
-                _ThuesdayCircleView.backgroundColor = MHBackgroundYellowColor;
+                [_ThuesdayCircleView setSelected:YES color:yellow];
                 break;
             case MHWednesday:
-                _WednesdayCircleView.backgroundColor = MHBackgroundYellowColor;
+                [_WednesdayCircleView setSelected:YES color:yellow];
                 break;
             case MHThursDay:
-                _ThursdayCircleView.backgroundColor = MHBackgroundYellowColor;
+                [_ThursdayCircleView setSelected:YES color:yellow];
                 break;
             case MHFriday:
-                _FridayCircleView.backgroundColor = MHBackgroundYellowColor;
+                [_FridayCircleView setSelected:YES color:yellow];
                 break;
             case MHSaturday:
-                _SaturdayCircleView.backgroundColor = [UIColor whiteColor];
+                [_SaturdayCircleView setSelected:YES color:[UIColor whiteColor]];
                 break;
             case MHSunday:
-                _SundayCircleView.backgroundColor = [UIColor whiteColor];
+                [_SundayCircleView setSelected:YES color:[UIColor whiteColor]];
                 break;
             default:
                 break;
