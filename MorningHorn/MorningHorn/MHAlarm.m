@@ -22,6 +22,7 @@
         self.soundName = @"";
         self.snoozeTime = 0;
         self.alarmId = [NSDate timeIntervalSinceReferenceDate];
+        self.selected = YES;
     }
     return self;
 }

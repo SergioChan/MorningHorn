@@ -12,6 +12,7 @@
 
 @property (nonatomic,strong) UIView *backView;
 @property (nonatomic,strong) UIButton *button;
+@property (nonatomic) BOOL selected;
 
 @end
 
@@ -21,6 +22,7 @@
 {
     self = [super initWithFrame:frame];
     if(self) {
+        self.selected = NO;
         [self initSubViews];
     }
     return self;
@@ -47,6 +49,48 @@
     _button.layer.shadowOpacity = 0.6f;
     _button.layer.shadowRadius = 10.0f;
     _button.layer.shadowColor = [UIColor blackColor].CGColor;
+    [_button addTarget:self action:@selector(buttonTap:) forControlEvents:UIControlEventTouchDown];
     [self addSubview:_button];
+}
+
+- (void)updateButtonState:(BOOL)selected animated:(BOOL)animated
+{
+    if(animated) {
+        [UIView animateWithDuration:0.3f animations:^{
+            if(!selected) {
+                _button.left = 0.0f;
+                _button.backgroundColor = [UIColor whiteColor];
+            } else {
+                _button.left = self.width - _button.height;
+                _button.backgroundColor = MHBackgroundYellowColor;
+            }
+
+        } completion:^(BOOL finished) {
+            self.selected = selected;
+        }];
+    } else {
+        if(!selected) {
+            _button.left = 0.0f;
+            _button.backgroundColor = [UIColor whiteColor];
+        } else {
+            _button.left = self.width - _button.height;
+            _button.backgroundColor = MHBackgroundYellowColor;
+        }
+        self.selected = selected;
+    }
+}
+
+- (void)buttonTap:(id)sender
+{
+    if(self.selected) {
+        [self updateButtonState:NO animated:YES];
+    } else {
+        [self updateButtonState:YES animated:YES];
+    }
+}
+
+- (BOOL)isSelected
+{
+    return self.selected;
 }
 @end

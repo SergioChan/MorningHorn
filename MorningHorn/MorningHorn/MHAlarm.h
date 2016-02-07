@@ -26,5 +26,6 @@ typedef NS_ENUM(NSInteger, MHWeekDay) {
 @property (nonatomic,strong) NSString *soundName;
 @property (nonatomic) NSInteger snoozeTime;
 @property (nonatomic) NSInteger alarmId;
+@property (nonatomic) BOOL selected;
 
 @end
