@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MHHeader.h"
 
 @interface MHSwitch : UIView
 

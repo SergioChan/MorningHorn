@@ -26,13 +26,16 @@
         
         self.weekDayView = [[MHWeekDayThumbnailView alloc]initWithFrame:CGRectMake(40.0f, _dateLabel.bottom + 10.0f, 150.0f, 15.0f) weekDayArray:[NSMutableArray array]];
         [self.contentView addSubview:_weekDayView];
+        
+        self.alarmSwitch = [[MHSwitch alloc]initWithFrame:CGRectMake(self.width - 100.0f, self.height/6.0f, 60.0f, (self.height/3.0f ) * 2.0f)];
+        [self.contentView addSubview:_alarmSwitch];
     }
     return self;
 }
 
 - (void)layoutSubviews
 {
-    
+    self.alarmSwitch.frame = CGRectMake(self.width - 100.0f, self.height/6.0f, 60.0f, (self.height/3.0f ) * 2.0f);
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

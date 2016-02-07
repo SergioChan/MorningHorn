@@ -10,11 +10,13 @@
 #import "MHAlarm.h"
 #import "MHHeader.h"
 #import "MHWeekDayThumbnailView.h"
+#import "MHSwitch.h"
 
 @interface MHListTableViewCell : UITableViewCell
 
 @property (nonatomic,strong) UILabel *dateLabel;
 @property (nonatomic,strong) MHAlarm *alarmModel;
 @property (nonatomic,strong) MHWeekDayThumbnailView *weekDayView;
+@property (nonatomic,strong) MHSwitch *alarmSwitch;
 
 @end
