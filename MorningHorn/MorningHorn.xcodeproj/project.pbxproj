@@ -30,6 +30,7 @@
 		50E035F01C5F566600353DBB /* MHLocalNotificationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 50E035EF1C5F566600353DBB /* MHLocalNotificationManager.m */; };
 		50E035FD1C64EC4000353DBB /* MHSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 50E035FC1C64EC4000353DBB /* MHSwitch.m */; };
 		50FC524C1C6599EC00BFB276 /* MHWeekDayThumbnailCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50FC524B1C6599EC00BFB276 /* MHWeekDayThumbnailCircleView.m */; };
+		50FC524F1C68383200BFB276 /* MHStorageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 50FC524E1C68383200BFB276 /* MHStorageManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,6 +98,8 @@
 		50E035FC1C64EC4000353DBB /* MHSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHSwitch.m; sourceTree = "<group>"; };
 		50FC524A1C6599EC00BFB276 /* MHWeekDayThumbnailCircleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHWeekDayThumbnailCircleView.h; sourceTree = "<group>"; };
 		50FC524B1C6599EC00BFB276 /* MHWeekDayThumbnailCircleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHWeekDayThumbnailCircleView.m; sourceTree = "<group>"; };
+		50FC524D1C68383200BFB276 /* MHStorageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHStorageManager.h; sourceTree = "<group>"; };
+		50FC524E1C68383200BFB276 /* MHStorageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHStorageManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -246,6 +249,8 @@
 				50D38D371C5B1A5400D46B57 /* MHRotateGestureRecognizer.m */,
 				50E035EE1C5F566600353DBB /* MHLocalNotificationManager.h */,
 				50E035EF1C5F566600353DBB /* MHLocalNotificationManager.m */,
+				50FC524D1C68383200BFB276 /* MHStorageManager.h */,
+				50FC524E1C68383200BFB276 /* MHStorageManager.m */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -393,6 +398,7 @@
 				50FC524C1C6599EC00BFB276 /* MHWeekDayThumbnailCircleView.m in Sources */,
 				50E035AB1C5F36F100353DBB /* MHWeekDayThumbnailView.m in Sources */,
 				50D38D351C5A089D00D46B57 /* UIView+ViewFrameGeometry.m in Sources */,
+				50FC524F1C68383200BFB276 /* MHStorageManager.m in Sources */,
 				50D38D471C5F2E8600D46B57 /* MHListTableViewCell.m in Sources */,
 				50D38D4A1C5F2FDD00D46B57 /* MHTimeString.m in Sources */,
 				50D38D321C5A02E600D46B57 /* MHCreateViewController.m in Sources */,

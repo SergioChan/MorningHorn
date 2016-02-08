@@ -11,6 +11,8 @@
 
 @interface MHSwitch : UIView
 
+@property (nonatomic,copy) void (^didUpdateState)(BOOL selected);
+
 - (void)updateButtonState:(BOOL)selected animated:(BOOL)animated;
 - (BOOL)isSelected;
 

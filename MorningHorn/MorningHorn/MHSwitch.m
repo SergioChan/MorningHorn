@@ -87,6 +87,9 @@
     } else {
         [self updateButtonState:YES animated:YES];
     }
+    if(self.didUpdateState) {
+        self.didUpdateState(self.selected);
+    }
 }
 
 - (BOOL)isSelected
