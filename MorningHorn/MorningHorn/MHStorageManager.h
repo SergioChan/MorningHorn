@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "MHAlarm.h"
 
 @interface MHStorageManager : NSObject
 

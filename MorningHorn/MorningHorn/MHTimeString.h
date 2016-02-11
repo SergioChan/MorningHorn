@@ -14,5 +14,7 @@
 @property (nonatomic) NSInteger minute;
 
 + (instancetype)timeStringWithHour:(NSInteger)hour minute:(NSInteger)minute;
++ (instancetype)timeStringWithSerializedString:(NSString *)string;
 
+- (NSString *)serializedString;
 @end

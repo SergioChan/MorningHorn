@@ -28,4 +28,7 @@ typedef NS_ENUM(NSInteger, MHWeekDay) {
 @property (nonatomic) NSInteger alarmId;
 @property (nonatomic) BOOL selected;
 
++ (instancetype)alarmWithSerializedString:(NSString *)string;
+- (NSString *)serializedString;
+
 @end

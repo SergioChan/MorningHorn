@@ -8,6 +8,12 @@
 
 #import "MHStorageManager.h"
 
+@interface MHStorageManager()
+{
+    NSUserDefaults *userDefault;
+}
+@end
+
 @implementation MHStorageManager
 
 + (MHStorageManager *) sharedInstance
@@ -18,6 +24,34 @@
         sharedInstance = [[MHStorageManager alloc]init];
     });
     return sharedInstance;
+}
+
+- (instancetype)init
+{
+    self = [super init];
+    if(self) {
+        userDefault = [NSUserDefaults standardUserDefaults];
+    }
+    return self;
+}
+
+- (void)saveNewAlarm:(MHAlarm *)alram
+{
+    if([userDefault objectForKey:@"data"]) {
+        
+    } else {
+        
+    }
+}
+
+- (void)deleteAlarmWithAlarmId:(NSInteger)alarmId
+{
+    
+}
+
+- (void)changeAlarmState:(BOOL)state
+{
+    
 }
 
 @end
