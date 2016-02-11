@@ -15,12 +15,26 @@
     self = [super initWithFrame:frame];
     if(self)
     {
-        self.layer.cornerRadius = self.width/2.0f;
-        self.backgroundColor = MHBackgroundPurpleColor_medium;
-        self.layer.shadowOffset = CGSizeMake(0, 10);
-        self.layer.shadowOpacity = 0.3f;
-        self.layer.shadowRadius = 30.0f;
-        self.layer.shadowColor = [UIColor blackColor].CGColor;
+        self.backgroundColor = [UIColor clearColor];
+        
+        // don't fucking try to think that using shadow will be easier, on the contrary, it will only cause more problems
+        
+//        self.layer.shadowOffset = CGSizeMake(0, 10);
+//        self.layer.shadowOpacity = 0.3f;
+//        self.layer.shadowRadius = 30.0f;
+//        self.layer.shadowColor = [UIColor blackColor].CGColor;
+        
+        UIView *view = [[UIView alloc]initWithFrame:self.bounds];
+        view.backgroundColor = MHBackgroundPurpleColor_medium;
+        view.layer.cornerRadius = self.width/2.0f;
+        [self addSubview:view];
+        
+        UIImageView *shadowImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0.0f, 100.0f, self.width, self.height)];
+        shadowImageView.image = [UIImage imageNamed:@"shadow"];
+        shadowImageView.contentMode = UIViewContentModeScaleAspectFill;
+        shadowImageView.layer.cornerRadius = self.width/2.0f;
+        [self addSubview:shadowImageView];
+        [self sendSubviewToBack:shadowImageView];
         
         CAGradientLayer *gradientLayer_minute = [CAGradientLayer layer];
         gradientLayer_minute.frame = self.bounds;

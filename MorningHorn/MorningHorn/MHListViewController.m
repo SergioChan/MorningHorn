@@ -49,9 +49,9 @@
     MHWheelPickerBackView *minuteBackView = [[MHWheelPickerBackView alloc]initWithFrame:_minutePickerView.frame type:MHPickerMinute];
 
     [self.view addSubview:minuteBackView];
-    [self.view addSubview:hourBackView];
-    
     [self.view addSubview:_minutePickerView];
+    
+    [self.view addSubview:hourBackView];
     [self.view addSubview:_hourPickerView];
     
 //    _hourPickerView.userInteractionEnabled = NO;

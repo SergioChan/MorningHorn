@@ -128,13 +128,13 @@
             MHWheelItemView *item = [_itemViewArray objectAtIndex:i];
             if(i == index) {
                 if(!item.isHighlighted) {
-                    if(self.type == MHPickerHour){
-                        item.titleLabel.textColor = MHBackgroundYellowColor;
-                    } else {
-                        item.titleLabel.textColor = [UIColor whiteColor];
-                    }
-                    item.titleLabel.font = [UIFont fontWithName:HightlightedFontName size:HourFontSize];
-                    item.isHighlighted = YES;
+//                    if(self.type == MHPickerHour){
+//                        item.titleLabel.textColor = MHBackgroundYellowColor;
+//                    } else {
+//                        item.titleLabel.textColor = [UIColor whiteColor];
+//                    }
+//                    item.titleLabel.font = [UIFont fontWithName:HightlightedFontName size:HourFontSize];
+//                    item.isHighlighted = YES;
                 }
             } else {
                 if(item.isHighlighted) {

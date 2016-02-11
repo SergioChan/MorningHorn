@@ -26,7 +26,6 @@
         self.backView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.3f, self.width, self.height)];
         self.backView.layer.cornerRadius = self.width/2.0f;
         self.backView.backgroundColor = MHBackgroundYellowColor;
-        self.backView.alpha = 0.6f;
         [self addSubview:self.backView];
         [self sendSubviewToBack:self.backView];
     }
@@ -38,9 +37,9 @@
     self.circleView.backgroundColor = color;
     
     if(selected) {
-        self.backView.alpha = 0.0f;
+        self.backView.hidden = YES;
     } else {
-        self.backView.alpha = 0.6f;
+        self.backView.hidden = NO;
     }
 }
 @end
