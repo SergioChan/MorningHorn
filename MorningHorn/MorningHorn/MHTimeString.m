@@ -40,7 +40,7 @@
 
 - (NSString *)serializedString
 {
-    return [NSString stringWithFormat:@"%ld:%ld",self.hour,self.minute];
+    return [NSString stringWithFormat:@"%@:%@",self.hour < 10 ? [NSString stringWithFormat:@"0%ld",self.hour] : [NSString stringWithFormat:@"%ld",self.hour],self.minute < 10 ? [NSString stringWithFormat:@"0%ld",self.minute] : [NSString stringWithFormat:@"%ld",self.minute]];
 }
 
 @end

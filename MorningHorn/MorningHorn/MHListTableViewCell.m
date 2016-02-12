@@ -36,6 +36,9 @@
 - (void)layoutSubviews
 {
     self.alarmSwitch.frame = CGRectMake(self.width - 100.0f, self.height/4.0f, 60.0f, (self.height/4.0f) * 3.0f);
+    self.dateLabel.text = [self.alarmModel.timeString serializedString];
+    [self.weekDayView reloadDataByWeekDayArray:self.alarmModel.weekDayArray];
+    [self.alarmSwitch updateButtonState:self.alarmModel.selected animated:NO];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

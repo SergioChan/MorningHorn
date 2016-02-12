@@ -47,10 +47,6 @@
     self.button = [[UIButton alloc]initWithFrame:CGRectMake(0.0f, 0.0f, self.height, self.height)];
     _button.backgroundColor = [UIColor whiteColor];
     _button.layer.cornerRadius = self.height/2.0f;
-//    _button.layer.shadowOffset = CGSizeMake(0, 10.0f);
-//    _button.layer.shadowOpacity = 0.6f;
-//    _button.layer.shadowRadius = 10.0f;
-//    _button.layer.shadowColor = [UIColor blackColor].CGColor;
     
     [_button addTarget:self action:@selector(buttonTap:) forControlEvents:UIControlEventTouchDown];
     

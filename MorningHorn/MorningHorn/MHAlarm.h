@@ -29,6 +29,7 @@ typedef NS_ENUM(NSInteger, MHWeekDay) {
 @property (nonatomic) BOOL selected;
 
 + (instancetype)alarmWithSerializedString:(NSString *)string;
++ (instancetype)alarmWithTimeString:(MHTimeString *)timeString weekDayArray:(NSMutableArray *)weekDayArray soundName:(NSString *)soundName snoozeTime:(NSInteger)snoozeTime;
 - (NSString *)serializedString;
 
 @end

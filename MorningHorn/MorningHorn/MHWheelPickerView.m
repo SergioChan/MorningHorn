@@ -92,7 +92,11 @@
     if (rotateGR.state == UIGestureRecognizerStateChanged) {//rotate
         
         start_degree += rotateGR.degrees;
-        if(RADIANS_TO_DEGREES(start_degree) >= 180.0f || RADIANS_TO_DEGREES(start_degree) <= -180.0f) start_degree = -start_degree;
+        if(RADIANS_TO_DEGREES(start_degree) >= 180.0f) {
+            start_degree =  DEGREES_TO_RADIANS(180.0f) - start_degree;
+        } else if (RADIANS_TO_DEGREES(start_degree) <= -180.0f) {
+            start_degree = - start_degree - DEGREES_TO_RADIANS(180.0f);
+        }
         
         CGFloat degree = RADIANS_TO_DEGREES(start_degree);
         NSInteger index = self.selectedIndex;
@@ -225,6 +229,41 @@
     }
     
     return _numberOfItems;
+}
+
+- (void)updateToIndex:(NSInteger)index animated:(BOOL)animated
+{
+    start_degree = DEGREES_TO_RADIANS(index * degree_per_item);
+
+    _selectedIndex = index;
+    [UIView animateWithDuration:0.5f animations:^{
+        for(NSInteger i=0;i<_itemViewArray.count;i++) {
+            MHWheelItemView *item = [_itemViewArray objectAtIndex:i];
+            if(i == _selectedIndex) {
+                if(!item.isHighlighted) {
+                    if(self.type == MHPickerHour){
+                        item.titleLabel.textColor = MHBackgroundYellowColor;
+                    } else {
+                        item.titleLabel.textColor = [UIColor whiteColor];
+                    }
+                    item.titleLabel.font = [UIFont fontWithName:HightlightedFontName size:HourFontSize];
+                    item.isHighlighted = YES;
+                }
+            } else {
+                if(item.isHighlighted) {
+                    item.isHighlighted = NO;
+                    if(self.type == MHPickerHour){
+                        item.titleLabel.textColor = MHBackgroundPurpleColor;
+                        item.titleLabel.font = [UIFont fontWithName:HightlightedFontName size:HourFontSize];
+                    } else {
+                        item.titleLabel.textColor = MHBackgroundPurpleColor;
+                        item.titleLabel.font = [UIFont fontWithName:HightlightedFontName size:MinuteFontSize];
+                    }
+                }
+            }
+        }
+        self.layer.transform = CATransform3DMakeRotation(-start_degree, 0, 0, 1);
+    }];
 }
 
 - (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event

@@ -34,4 +34,6 @@ typedef NS_ENUM(NSInteger, MHPickerType) {
 @property (nonatomic, weak)             id<MHWheelPickerViewDelegate> delegate;
 
 - (instancetype)initWithFrame:(CGRect)frame delegate:(id)delegateSource type:(MHPickerType)type;
+- (void)updateToIndex:(NSInteger)index animated:(BOOL)animated;
+
 @end

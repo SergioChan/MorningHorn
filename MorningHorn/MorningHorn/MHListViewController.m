@@ -18,9 +18,11 @@
 
 @property (nonatomic, strong) MHWheelPickerView *hourPickerView;
 @property (nonatomic, strong) MHWheelPickerView *minutePickerView;
-@property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) UITableView       *listTableView;
+@property (nonatomic, strong) UIButton          *lightButton;
+@property (nonatomic, strong) UILabel           *lightTitleLabel;
 
-@property (nonatomic, strong) NSMutableArray *alarmArray;
+@property (nonatomic, strong) NSMutableArray    *alarmArray;
 @end
 
 @implementation MHListViewController
@@ -38,7 +40,13 @@
     [super viewDidLoad];
     
     self.view.backgroundColor = MHBackgroundPurpleColor;
-    self.alarmArray = [NSMutableArray arrayWithObjects:@"09:45",@"20:30",@"05:46",nil];
+    self.alarmArray = [NSMutableArray arrayWithObjects:
+                       [MHAlarm alarmWithTimeString:[MHTimeString timeStringWithHour:9 minute:45] weekDayArray:[NSMutableArray arrayWithObjects:@(MHMonday),@(MHTuesDay),@(MHWednesday),@(MHThursDay), nil] soundName:@"" snoozeTime:0],
+                       [MHAlarm alarmWithTimeString:[MHTimeString timeStringWithHour:20 minute:30] weekDayArray:[NSMutableArray arrayWithObjects:@(MHMonday),@(MHTuesDay),@(MHSaturday),@(MHSunday), nil] soundName:@"" snoozeTime:0],
+                       [MHAlarm alarmWithTimeString:[MHTimeString timeStringWithHour:5 minute:46] weekDayArray:[NSMutableArray arrayWithObjects:@(MHMonday),@(MHTuesDay),@(MHFriday), nil] soundName:@"" snoozeTime:0],
+                       [MHAlarm alarmWithTimeString:[MHTimeString timeStringWithHour:9 minute:30] weekDayArray:[NSMutableArray arrayWithObjects:@(MHMonday),@(MHTuesDay),@(MHWednesday), nil] soundName:@"" snoozeTime:0],
+                       [MHAlarm alarmWithTimeString:[MHTimeString timeStringWithHour:7 minute:23] weekDayArray:[NSMutableArray arrayWithObjects:@(MHMonday),@(MHTuesDay),@(MHSaturday),@(MHSunday), nil] soundName:@"" snoozeTime:0],nil];
+    
     
     self.hourPickerView = [[MHWheelPickerView alloc]initWithFrame:CGRectMake(-150.0f, - (ScreenWidth + 300.0f)/2.0f - 200.0f, ScreenWidth + 300.0f, ScreenWidth + 300.0f) delegate:self type:MHPickerHour];
 
@@ -54,20 +62,39 @@
     [self.view addSubview:hourBackView];
     [self.view addSubview:_hourPickerView];
     
-//    _hourPickerView.userInteractionEnabled = NO;
-//    _minutePickerView.userInteractionEnabled = NO;
+    _hourPickerView.userInteractionEnabled = NO;
+    _minutePickerView.userInteractionEnabled = NO;
     
-    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0.0f, _minutePickerView.bottom + 80.0f, ScreenWidth, ScreenHeight - _minutePickerView.bottom - 80.0f) style:UITableViewStylePlain];
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
-    self.tableView.backgroundColor = [UIColor clearColor];
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.tableView.showsHorizontalScrollIndicator = NO;
-    self.tableView.showsVerticalScrollIndicator = NO;
-    self.tableView.bounces = YES;
+    self.listTableView = [[UITableView alloc]initWithFrame:CGRectMake(0.0f, _minutePickerView.bottom - 30.0f, ScreenWidth, ScreenHeight - _minutePickerView.bottom + 30.0f) style:UITableViewStylePlain];
+    self.listTableView.delegate = self;
+    self.listTableView.dataSource = self;
+    self.listTableView.backgroundColor = [UIColor clearColor];
+    self.listTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.listTableView.showsHorizontalScrollIndicator = NO;
+    self.listTableView.showsVerticalScrollIndicator = NO;
+    self.listTableView.bounces = YES;
+    self.listTableView.tableHeaderView = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, _listTableView.width, 80.0f)];
+    self.listTableView.tableFooterView = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, _listTableView.width, 130.0f)];
+    [self.view insertSubview:_listTableView belowSubview:minuteBackView];
+
     
-    [self.view addSubview:_tableView];
-    // Do any additional setup after loading the view.
+    self.lightButton = [[UIButton alloc]initWithFrame:CGRectMake(ScreenWidth - 150.0f, ScreenHeight - 150.0f, 300.0f, 300.0f)];
+    _lightButton.layer.cornerRadius = 150.0f;
+    _lightButton.backgroundColor = MHBackgroundYellowColor;
+    _lightButton.layer.shadowColor = [UIColor colorWithRed:251/255.0f green:229/255.0f blue:84/255.0f alpha:1.0f].CGColor;
+    _lightButton.layer.shadowOffset = CGSizeMake(-5, -5);
+    _lightButton.layer.shadowOpacity = 0.6f;
+    _lightButton.layer.shadowRadius = 30.0f;
+    [_lightButton addTarget:self action:@selector(ButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:_lightButton];
+    
+    self.lightTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(ScreenWidth - 110.0f, ScreenHeight - 110.0f, 100.0f, 100.0f)];
+    _lightTitleLabel.text = @"+";
+    _lightTitleLabel.textColor = [UIColor whiteColor];
+    _lightTitleLabel.font = [UIFont fontWithName:HightlightedFontName size:70.0f];
+    _lightTitleLabel.textAlignment = NSTextAlignmentCenter;
+    _lightTitleLabel.adjustsFontSizeToFitWidth = YES;
+    [self.view addSubview:_lightTitleLabel];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -86,9 +113,9 @@
 - (void)wheelView:(MHWheelPickerView *)wheelView didSelectItemAtIndex:(NSInteger)index
 {
     if(wheelView.type == MHPickerHour)
-        NSLog(@"hour :%ld",index);
+        NSLog(@"hour :%ld",(long)index);
     else
-        NSLog(@"minute: %ld",index);
+        NSLog(@"minute: %ld",(long)index);
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -98,7 +125,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 3;
+    return self.alarmArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -108,14 +135,42 @@
     {
         cell = [[MHListTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"ListCell"];
     }
-    cell.dateLabel.text = [self.alarmArray objectAtIndex:indexPath.row];
-    
+    cell.alarmModel = [self.alarmArray objectAtIndex:indexPath.row];
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if([tableView isEqual:_listTableView]) {
+        MHTimeString *t = [[self.alarmArray objectAtIndex:indexPath.row] timeString];
+        [self.hourPickerView updateToIndex:t.hour animated:YES];
+        [self.minutePickerView updateToIndex:t.minute animated:YES];
+    }
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
+}
+
+- (void)ButtonPressed:(id)sender
+{
+    if([_lightTitleLabel.text isEqualToString:@"+"]) {
+        [UIView animateWithDuration:0.5f animations:^{
+            _lightTitleLabel.text = @"OK";
+        } completion:^(BOOL finished) {
+            _hourPickerView.userInteractionEnabled = YES;
+            _minutePickerView.userInteractionEnabled = YES;
+        }];
+    } else {
+        [UIView animateWithDuration:0.5f animations:^{
+            _lightTitleLabel.text = @"+";
+        } completion:^(BOOL finished) {
+            _hourPickerView.userInteractionEnabled = NO;
+            _minutePickerView.userInteractionEnabled = NO;
+
+        }];
+    }
 }
 /*
 #pragma mark - Navigation

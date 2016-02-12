@@ -32,6 +32,17 @@
     }
 }
 
++ (instancetype)alarmWithTimeString:(MHTimeString *)timeString weekDayArray:(NSMutableArray *)weekDayArray soundName:(NSString *)soundName snoozeTime:(NSInteger)snoozeTime
+{
+    MHAlarm *alarm = [[self alloc]init];
+    alarm.timeString = timeString;
+    alarm.weekDayArray = weekDayArray;
+    alarm.soundName = soundName;
+    alarm.snoozeTime = snoozeTime;
+    alarm.selected = YES;
+    return alarm;
+}
+
 - (instancetype)init
 {
     self = [super init];
