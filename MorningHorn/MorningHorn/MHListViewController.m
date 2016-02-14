@@ -13,16 +13,24 @@
 #import "MHRotateGestureRecognizer.h"
 #import "MHWheelPickerView.h"
 #import "MHWheelItemView.h"
+#import "MHCreateFormView.h"
 
 @interface MHListViewController ()<MHWheelPickerViewDelegate,UITableViewDataSource,UITableViewDelegate>
-
+{
+    CGFloat tableViewTopConstant;
+}
 @property (nonatomic, strong) MHWheelPickerView *hourPickerView;
 @property (nonatomic, strong) MHWheelPickerView *minutePickerView;
 @property (nonatomic, strong) UITableView       *listTableView;
 @property (nonatomic, strong) UIButton          *lightButton;
 @property (nonatomic, strong) UILabel           *lightTitleLabel;
 
+@property (nonatomic, strong) MHCreateFormView  *createFormView;
 @property (nonatomic, strong) NSMutableArray    *alarmArray;
+
+@property (nonatomic) NSInteger                 selectedHour;
+@property (nonatomic) NSInteger                 selectedMinute;
+
 @end
 
 @implementation MHListViewController
@@ -32,6 +40,9 @@
     self = [super initWithCoder:aDecoder];
     if(self)
     {
+        self.selectedHour = 0;
+        self.selectedMinute = 0;
+        self.alarmArray = [NSMutableArray array];
     }
     return self;
 }
@@ -65,10 +76,11 @@
     _hourPickerView.userInteractionEnabled = NO;
     _minutePickerView.userInteractionEnabled = NO;
     
+    tableViewTopConstant = _minutePickerView.bottom - 30.0f;
     self.listTableView = [[UITableView alloc]initWithFrame:CGRectMake(0.0f, _minutePickerView.bottom - 30.0f, ScreenWidth, ScreenHeight - _minutePickerView.bottom + 30.0f) style:UITableViewStylePlain];
     self.listTableView.delegate = self;
     self.listTableView.dataSource = self;
-    self.listTableView.backgroundColor = [UIColor clearColor];
+    self.listTableView.backgroundColor = MHBackgroundPurpleColor;
     self.listTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.listTableView.showsHorizontalScrollIndicator = NO;
     self.listTableView.showsVerticalScrollIndicator = NO;
@@ -77,6 +89,9 @@
     self.listTableView.tableFooterView = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, _listTableView.width, 130.0f)];
     [self.view insertSubview:_listTableView belowSubview:minuteBackView];
 
+    self.createFormView = [[MHCreateFormView alloc] initWithFrame:CGRectMake(0.0f, ScreenHeight, ScreenWidth, ScreenHeight - _minutePickerView.bottom + 30.0f)];
+    self.createFormView.backgroundColor = MHBackgroundPurpleColor;
+    [self.view insertSubview:_createFormView belowSubview:minuteBackView];
     
     self.lightButton = [[UIButton alloc]initWithFrame:CGRectMake(ScreenWidth - 150.0f, ScreenHeight - 150.0f, 300.0f, 300.0f)];
     _lightButton.layer.cornerRadius = 150.0f;
@@ -102,21 +117,21 @@
     // Dispose of any resources that can be recreated.
 }
 
+# pragma mark - MHWheelPickerViewDelegate
+
 - (NSInteger)numberOfItemsInWheelView:(MHWheelPickerView *)wheelView
 {
-    if(wheelView.type == MHPickerHour)
-        return 24;
-    else
-        return 60;
+    if(wheelView.type == MHPickerHour) return 24;
+    else return 60;
 }
 
 - (void)wheelView:(MHWheelPickerView *)wheelView didSelectItemAtIndex:(NSInteger)index
 {
-    if(wheelView.type == MHPickerHour)
-        NSLog(@"hour :%ld",(long)index);
-    else
-        NSLog(@"minute: %ld",(long)index);
+    if(wheelView.type == MHPickerHour) self.selectedHour = index;
+    else self.selectedMinute = index;
 }
+
+# pragma mark - UITableViewDataSource
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -134,6 +149,15 @@
     if(!cell)
     {
         cell = [[MHListTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"ListCell"];
+        cell.alarmSwitch.didUpdateState = ^(BOOL selected,NSString *alarmId) {
+            for(NSInteger i=0;i<self.alarmArray.count;i++) {
+                MHAlarm *alarm = [self.alarmArray objectAtIndex:i];
+                if([alarm.alarmId isEqualToString:alarmId]) {
+                    alarm.selected = selected;
+                    [self.alarmArray replaceObjectAtIndex:i withObject:alarm];
+                }
+            }
+        };
     }
     cell.alarmModel = [self.alarmArray objectAtIndex:indexPath.row];
     return cell;
@@ -141,11 +165,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if([tableView isEqual:_listTableView]) {
-        MHTimeString *t = [[self.alarmArray objectAtIndex:indexPath.row] timeString];
-        [self.hourPickerView updateToIndex:t.hour animated:YES];
-        [self.minutePickerView updateToIndex:t.minute animated:YES];
-    }
+    MHTimeString *t = [[self.alarmArray objectAtIndex:indexPath.row] timeString];
+    [self.hourPickerView updateToIndex:t.hour animated:YES];
+    [self.minutePickerView updateToIndex:t.minute animated:YES];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -156,22 +178,30 @@
 - (void)ButtonPressed:(id)sender
 {
     if([_lightTitleLabel.text isEqualToString:@"+"]) {
-        [UIView animateWithDuration:0.5f animations:^{
+        // Animate from list to create form
+    
+        [UIView animateWithDuration:0.3f delay:0.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
+            _listTableView.top = ScreenHeight;
+            _createFormView.top = tableViewTopConstant;
             _lightTitleLabel.text = @"OK";
         } completion:^(BOOL finished) {
             _hourPickerView.userInteractionEnabled = YES;
             _minutePickerView.userInteractionEnabled = YES;
         }];
     } else {
-        [UIView animateWithDuration:0.5f animations:^{
+        // Animate from create form to list
+        
+        [UIView animateWithDuration:0.3f delay:0.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
             _lightTitleLabel.text = @"+";
+            _createFormView.top = ScreenHeight;
+            _listTableView.top = tableViewTopConstant;
         } completion:^(BOOL finished) {
             _hourPickerView.userInteractionEnabled = NO;
             _minutePickerView.userInteractionEnabled = NO;
-
         }];
     }
 }
+
 /*
 #pragma mark - Navigation
 

@@ -23,7 +23,7 @@
         alarm.weekDayArray = [jsonDictionary objectForKey:@"weekDayArray"];
         alarm.soundName = [jsonDictionary objectForKey:@"soundName"];
         alarm.snoozeTime = [[jsonDictionary objectForKey:@"snoozeTime"] integerValue];
-        alarm.alarmId = [[jsonDictionary objectForKey:@"alarmId"] integerValue];
+        alarm.alarmId = [[jsonDictionary objectForKey:@"alarmId"] stringValue];
         alarm.selected = [[jsonDictionary objectForKey:@"selected"] boolValue];
         
         return alarm;
@@ -54,7 +54,7 @@
         self.weekDayArray = [NSMutableArray array];
         self.soundName = @"";
         self.snoozeTime = 0;
-        self.alarmId = [NSDate timeIntervalSinceReferenceDate];
+        self.alarmId = [self createUUID];
         self.selected = YES;
     }
     return self;
@@ -68,7 +68,7 @@
     [dictionary setObject:self.weekDayArray forKey:@"weekDayArray"];
     [dictionary setObject:self.soundName forKey:@"soundName"];
     [dictionary setObject:@(self.snoozeTime) forKey:@"snoozeTime"];
-    [dictionary setObject:@(self.alarmId) forKey:@"alarmId"];
+    [dictionary setObject:self.alarmId forKey:@"alarmId"];
     [dictionary setObject:@(self.selected) forKey:@"selected"];
     
     NSError *error = nil;
@@ -81,5 +81,11 @@
     }
 }
 
-
+- (NSString *)createUUID
+{
+    CFUUIDRef uuid = CFUUIDCreate(NULL);
+    NSString *uuidStr = (__bridge_transfer NSString *)CFUUIDCreateString(NULL, uuid);
+    CFRelease(uuid);
+    return uuidStr;
+}
 @end

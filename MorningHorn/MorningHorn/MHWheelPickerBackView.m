@@ -29,7 +29,7 @@
         view.layer.cornerRadius = self.width/2.0f;
         [self addSubview:view];
         
-        UIImageView *shadowImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0.0f, 100.0f, self.width, self.height)];
+        UIImageView *shadowImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0.0f, self.height/7.0f, self.width, self.height)];
         shadowImageView.image = [UIImage imageNamed:@"shadow"];
         shadowImageView.contentMode = UIViewContentModeScaleAspectFill;
         shadowImageView.layer.cornerRadius = self.width/2.0f;

@@ -24,6 +24,7 @@
 {
     self = [super initWithFrame:frame];
     if(self) {
+        self.alarmId = @"";
         self.selected = NO;
         [self initSubViews];
     }
@@ -96,11 +97,14 @@
 {
     if(self.selected) {
         [self updateButtonState:NO animated:YES];
+        if(self.didUpdateState) {
+            self.didUpdateState(NO,self.alarmId);
+        }
     } else {
         [self updateButtonState:YES animated:YES];
-    }
-    if(self.didUpdateState) {
-        self.didUpdateState(self.selected);
+        if(self.didUpdateState) {
+            self.didUpdateState(YES,self.alarmId);
+        }
     }
 }
 

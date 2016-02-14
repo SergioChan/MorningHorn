@@ -11,7 +11,8 @@
 
 @interface MHSwitch : UIView
 
-@property (nonatomic,copy) void (^didUpdateState)(BOOL selected);
+@property (nonatomic,copy) void (^didUpdateState)(BOOL selected, NSString *alarmId);
+@property (nonatomic,strong) NSString *alarmId;
 
 - (void)updateButtonState:(BOOL)selected animated:(BOOL)animated;
 - (BOOL)isSelected;

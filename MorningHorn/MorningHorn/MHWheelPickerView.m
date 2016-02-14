@@ -93,52 +93,28 @@
         
         start_degree += rotateGR.degrees;
         if(RADIANS_TO_DEGREES(start_degree) >= 180.0f) {
-            start_degree =  DEGREES_TO_RADIANS(180.0f) - start_degree;
+            start_degree = - (DEGREES_TO_RADIANS(360.0f) - start_degree);
         } else if (RADIANS_TO_DEGREES(start_degree) <= -180.0f) {
-            start_degree = - start_degree - DEGREES_TO_RADIANS(180.0f);
+            start_degree = start_degree + DEGREES_TO_RADIANS(360.0f);
         }
         
         CGFloat degree = RADIANS_TO_DEGREES(start_degree);
-        NSInteger index = self.selectedIndex;
+        if(degree < 0) degree = 360.0f + degree;
         
-        int t = (int)floorf(fabs(degree)/degree_per_item);
-        int ct = (int)ceilf(fabs(degree)/degree_per_item);
-        
-        NSLog(@"last time t:%d,ct:%d,rt:%f,st:%f",t,ct,rotateGR.degrees,degree);
-        
-        if(start_degree >= 0) {
-            if(rotateGR.degrees >= 0.0f) {
-                // From right to left
-                index = self.numberOfItems - t;
-            } else {
-                // From left to right
-                index = self.numberOfItems - ct;
-            }
-        } else {
-            if(rotateGR.degrees > 0.0f) {
-                // From right to left
-                index = 0 + ct;
-            } else {
-                // From left to right
-                index = 0 + t;
-            }
-        }
-        
+        NSInteger index = self.numberOfItems - floorf(floorf(degree/ (degree_per_item/2.0f)) / 2.0f);
         if(index >= self.numberOfItems) index = index%self.numberOfItems;
-        
-//        NSLog(@"temp index:%ld",index);
         
         for(NSInteger i=0;i<_itemViewArray.count;i++) {
             MHWheelItemView *item = [_itemViewArray objectAtIndex:i];
             if(i == index) {
                 if(!item.isHighlighted) {
-//                    if(self.type == MHPickerHour){
-//                        item.titleLabel.textColor = MHBackgroundYellowColor;
-//                    } else {
-//                        item.titleLabel.textColor = [UIColor whiteColor];
-//                    }
-//                    item.titleLabel.font = [UIFont fontWithName:HightlightedFontName size:HourFontSize];
-//                    item.isHighlighted = YES;
+                    if(self.type == MHPickerHour){
+                        item.titleLabel.textColor = MHBackgroundYellowColor;
+                    } else {
+                        item.titleLabel.textColor = [UIColor whiteColor];
+                    }
+                    item.titleLabel.font = [UIFont fontWithName:HightlightedFontName size:HourFontSize];
+                    item.isHighlighted = YES;
                 }
             } else {
                 if(item.isHighlighted) {
@@ -159,33 +135,18 @@
     else if(rotateGR.state == UIGestureRecognizerStateEnded) {//tap
 
         CGFloat degree = RADIANS_TO_DEGREES(start_degree);
-        int t = (int)floorf(fabs(degree)/degree_per_item);
-        int ct = (int)ceilf(fabs(degree)/degree_per_item);
-        if(start_degree >= 0) {
-            if(rotateGR.degrees > 0) {
-                // From right to left
-                _selectedIndex = self.numberOfItems - t;
-                start_degree = DEGREES_TO_RADIANS(t * degree_per_item);
-            } else {
-                // From left to right
-                _selectedIndex = self.numberOfItems - ct;
-                start_degree = DEGREES_TO_RADIANS(ct * degree_per_item);
-            }
+        if(degree < 0) degree = 360.0f + degree;
+
+        NSInteger index = floorf(floorf(degree/ (degree_per_item/2.0f)) / 2.0f);
+        
+        if(index > self.numberOfItems / 2.0f) {
+            start_degree = DEGREES_TO_RADIANS(- (self.numberOfItems - index) * degree_per_item);
         } else {
-            if(rotateGR.degrees > 0) {
-                // From right to left
-                _selectedIndex = 0 + ct;
-                start_degree = DEGREES_TO_RADIANS(-ct * degree_per_item);
-            } else {
-                // From left to right
-                _selectedIndex = 0 + t;
-                start_degree = DEGREES_TO_RADIANS(-t * degree_per_item);
-            }
+            start_degree = DEGREES_TO_RADIANS(index * degree_per_item);
         }
         
+        _selectedIndex = self.numberOfItems - index;
         if(self.selectedIndex >= self.numberOfItems) self.selectedIndex = self.selectedIndex%self.numberOfItems;
-        
-//        NSLog(@"index: %ld, %f",self.selectedIndex,floorf(fabs(degree)/degree_per_item));
         
         [UIView animateWithDuration:0.3f animations:^{
             for(NSInteger i=0;i<_itemViewArray.count;i++) {
@@ -233,7 +194,7 @@
 
 - (void)updateToIndex:(NSInteger)index animated:(BOOL)animated
 {
-    start_degree = DEGREES_TO_RADIANS(index * degree_per_item);
+    start_degree = -DEGREES_TO_RADIANS(index * degree_per_item);
 
     _selectedIndex = index;
     [UIView animateWithDuration:0.5f animations:^{
@@ -262,7 +223,7 @@
                 }
             }
         }
-        self.layer.transform = CATransform3DMakeRotation(-start_degree, 0, 0, 1);
+        self.layer.transform = CATransform3DMakeRotation(start_degree, 0, 0, 1);
     }];
 }
 

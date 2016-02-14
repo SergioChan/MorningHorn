@@ -21,12 +21,12 @@ typedef NS_ENUM(NSInteger, MHWeekDay) {
 
 @interface MHAlarm : NSObject
 
-@property (nonatomic,strong) MHTimeString *timeString;
+@property (nonatomic,strong) MHTimeString   *timeString;
 @property (nonatomic,strong) NSMutableArray *weekDayArray;
-@property (nonatomic,strong) NSString *soundName;
-@property (nonatomic) NSInteger snoozeTime;
-@property (nonatomic) NSInteger alarmId;
-@property (nonatomic) BOOL selected;
+@property (nonatomic,strong) NSString       *soundName;
+@property (nonatomic) NSInteger             snoozeTime;
+@property (nonatomic,strong) NSString       *alarmId;
+@property (nonatomic) BOOL                  selected;
 
 + (instancetype)alarmWithSerializedString:(NSString *)string;
 + (instancetype)alarmWithTimeString:(MHTimeString *)timeString weekDayArray:(NSMutableArray *)weekDayArray soundName:(NSString *)soundName snoozeTime:(NSInteger)snoozeTime;

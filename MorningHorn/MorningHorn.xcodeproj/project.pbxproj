@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		502243C71C6F6161001DB79C /* MHCreateFormView.m in Sources */ = {isa = PBXBuildFile; fileRef = 502243C61C6F6161001DB79C /* MHCreateFormView.m */; };
 		50D38CEE1C59FAB200D46B57 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D38CED1C59FAB200D46B57 /* main.m */; };
 		50D38CF11C59FAB200D46B57 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D38CF01C59FAB200D46B57 /* AppDelegate.m */; };
 		50D38CF71C59FAB200D46B57 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50D38CF51C59FAB200D46B57 /* Main.storyboard */; };
@@ -51,6 +52,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		502243C51C6F6161001DB79C /* MHCreateFormView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHCreateFormView.h; sourceTree = "<group>"; };
+		502243C61C6F6161001DB79C /* MHCreateFormView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHCreateFormView.m; sourceTree = "<group>"; };
 		50D38CE91C59FAB200D46B57 /* MorningHorn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MorningHorn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		50D38CED1C59FAB200D46B57 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		50D38CEF1C59FAB200D46B57 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -212,6 +215,8 @@
 				50E035FC1C64EC4000353DBB /* MHSwitch.m */,
 				50FC524A1C6599EC00BFB276 /* MHWeekDayThumbnailCircleView.h */,
 				50FC524B1C6599EC00BFB276 /* MHWeekDayThumbnailCircleView.m */,
+				502243C51C6F6161001DB79C /* MHCreateFormView.h */,
+				502243C61C6F6161001DB79C /* MHCreateFormView.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -393,6 +398,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				50D38D3B1C5B1AE700D46B57 /* MHWheelItemView.m in Sources */,
+				502243C71C6F6161001DB79C /* MHCreateFormView.m in Sources */,
 				50D38D441C5F0E0400D46B57 /* MHWheelPickerBackView.m in Sources */,
 				50D38CF11C59FAB200D46B57 /* AppDelegate.m in Sources */,
 				50FC524C1C6599EC00BFB276 /* MHWeekDayThumbnailCircleView.m in Sources */,

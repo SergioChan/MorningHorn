@@ -16,5 +16,5 @@
 + (MHLocalNotificationManager *) sharedInstance;
 
 - (void)registerAlarm:(MHAlarm *)alarm;
-- (void)cancelAlarm:(NSInteger)alarmId;
+- (void)cancelAlarm:(NSString *)alarmId;
 @end

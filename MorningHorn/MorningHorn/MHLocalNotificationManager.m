@@ -69,12 +69,12 @@
     }
 }
 
-- (void)cancelAlarm:(NSInteger)alarmId
+- (void)cancelAlarm:(NSString *)alarmId
 {
     NSMutableArray *noticationsToCancel = [NSMutableArray array];
     
     for(UILocalNotification *aNotif in [[UIApplication sharedApplication] scheduledLocalNotifications]) {
-        if([[aNotif.userInfo objectForKey:@"id"] integerValue] == alarmId) {
+        if([[aNotif.userInfo objectForKey:@"id"] isEqualToString:alarmId]) {
             [noticationsToCancel addObject:aNotif];
         }
     }
@@ -103,7 +103,7 @@
     notification.hasAction = YES;
     notification.alertBody = [NSString stringWithFormat:NotificationTitle];
     
-    NSDictionary* info = [NSDictionary dictionaryWithObjects:@[@(alarm.alarmId),alarm] forKeys:@[@"id",@"object"]];
+    NSDictionary* info = [NSDictionary dictionaryWithObjects:@[alarm.alarmId,alarm] forKeys:@[@"id",@"object"]];
     notification.userInfo = info;
     
     return notification;
