@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		502243C71C6F6161001DB79C /* MHCreateFormView.m in Sources */ = {isa = PBXBuildFile; fileRef = 502243C61C6F6161001DB79C /* MHCreateFormView.m */; };
+		502243CC1C70C60F001DB79C /* MHWeekDayCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 502243CB1C70C60F001DB79C /* MHWeekDayCircleView.m */; };
+		502243CF1C70C6BC001DB79C /* UIView+Shadow.m in Sources */ = {isa = PBXBuildFile; fileRef = 502243CE1C70C6BC001DB79C /* UIView+Shadow.m */; };
 		50D38CEE1C59FAB200D46B57 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D38CED1C59FAB200D46B57 /* main.m */; };
 		50D38CF11C59FAB200D46B57 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D38CF01C59FAB200D46B57 /* AppDelegate.m */; };
 		50D38CF71C59FAB200D46B57 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50D38CF51C59FAB200D46B57 /* Main.storyboard */; };
@@ -16,7 +18,6 @@
 		50D38D071C59FAB200D46B57 /* MorningHornTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D38D061C59FAB200D46B57 /* MorningHornTests.m */; };
 		50D38D121C59FAB200D46B57 /* MorningHornUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D38D111C59FAB200D46B57 /* MorningHornUITests.m */; };
 		50D38D2F1C5A02BB00D46B57 /* MHListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D38D2E1C5A02BB00D46B57 /* MHListViewController.m */; };
-		50D38D321C5A02E600D46B57 /* MHCreateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D38D311C5A02E600D46B57 /* MHCreateViewController.m */; };
 		50D38D351C5A089D00D46B57 /* UIView+ViewFrameGeometry.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D38D331C5A089D00D46B57 /* UIView+ViewFrameGeometry.m */; };
 		50D38D381C5B1A5400D46B57 /* MHRotateGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D38D371C5B1A5400D46B57 /* MHRotateGestureRecognizer.m */; };
 		50D38D3B1C5B1AE700D46B57 /* MHWheelItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D38D3A1C5B1AE700D46B57 /* MHWheelItemView.m */; };
@@ -54,6 +55,10 @@
 /* Begin PBXFileReference section */
 		502243C51C6F6161001DB79C /* MHCreateFormView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHCreateFormView.h; sourceTree = "<group>"; };
 		502243C61C6F6161001DB79C /* MHCreateFormView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHCreateFormView.m; sourceTree = "<group>"; };
+		502243CA1C70C60F001DB79C /* MHWeekDayCircleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHWeekDayCircleView.h; sourceTree = "<group>"; };
+		502243CB1C70C60F001DB79C /* MHWeekDayCircleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHWeekDayCircleView.m; sourceTree = "<group>"; };
+		502243CD1C70C6BC001DB79C /* UIView+Shadow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Shadow.h"; sourceTree = "<group>"; };
+		502243CE1C70C6BC001DB79C /* UIView+Shadow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Shadow.m"; sourceTree = "<group>"; };
 		50D38CE91C59FAB200D46B57 /* MorningHorn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MorningHorn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		50D38CED1C59FAB200D46B57 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		50D38CEF1C59FAB200D46B57 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -71,8 +76,6 @@
 		50D38D2C1C5A029900D46B57 /* MHHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MHHeader.h; sourceTree = "<group>"; };
 		50D38D2D1C5A02BB00D46B57 /* MHListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHListViewController.h; sourceTree = "<group>"; };
 		50D38D2E1C5A02BB00D46B57 /* MHListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHListViewController.m; sourceTree = "<group>"; };
-		50D38D301C5A02E600D46B57 /* MHCreateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHCreateViewController.h; sourceTree = "<group>"; };
-		50D38D311C5A02E600D46B57 /* MHCreateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHCreateViewController.m; sourceTree = "<group>"; };
 		50D38D331C5A089D00D46B57 /* UIView+ViewFrameGeometry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+ViewFrameGeometry.m"; sourceTree = "<group>"; };
 		50D38D341C5A089D00D46B57 /* UIView+ViewFrameGeometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+ViewFrameGeometry.h"; sourceTree = "<group>"; };
 		50D38D361C5B1A5400D46B57 /* MHRotateGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHRotateGestureRecognizer.h; sourceTree = "<group>"; };
@@ -215,6 +218,8 @@
 				50E035FC1C64EC4000353DBB /* MHSwitch.m */,
 				50FC524A1C6599EC00BFB276 /* MHWeekDayThumbnailCircleView.h */,
 				50FC524B1C6599EC00BFB276 /* MHWeekDayThumbnailCircleView.m */,
+				502243CA1C70C60F001DB79C /* MHWeekDayCircleView.h */,
+				502243CB1C70C60F001DB79C /* MHWeekDayCircleView.m */,
 				502243C51C6F6161001DB79C /* MHCreateFormView.h */,
 				502243C61C6F6161001DB79C /* MHCreateFormView.m */,
 			);
@@ -226,8 +231,6 @@
 			children = (
 				50D38D2D1C5A02BB00D46B57 /* MHListViewController.h */,
 				50D38D2E1C5A02BB00D46B57 /* MHListViewController.m */,
-				50D38D301C5A02E600D46B57 /* MHCreateViewController.h */,
-				50D38D311C5A02E600D46B57 /* MHCreateViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -246,6 +249,8 @@
 		50D38D221C59FBD100D46B57 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				502243CD1C70C6BC001DB79C /* UIView+Shadow.h */,
+				502243CE1C70C6BC001DB79C /* UIView+Shadow.m */,
 				50D38D3F1C5C770F00D46B57 /* HexColors.h */,
 				50D38D401C5C770F00D46B57 /* HexColors.m */,
 				50D38D331C5A089D00D46B57 /* UIView+ViewFrameGeometry.m */,
@@ -397,17 +402,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				502243CC1C70C60F001DB79C /* MHWeekDayCircleView.m in Sources */,
 				50D38D3B1C5B1AE700D46B57 /* MHWheelItemView.m in Sources */,
 				502243C71C6F6161001DB79C /* MHCreateFormView.m in Sources */,
 				50D38D441C5F0E0400D46B57 /* MHWheelPickerBackView.m in Sources */,
 				50D38CF11C59FAB200D46B57 /* AppDelegate.m in Sources */,
 				50FC524C1C6599EC00BFB276 /* MHWeekDayThumbnailCircleView.m in Sources */,
+				502243CF1C70C6BC001DB79C /* UIView+Shadow.m in Sources */,
 				50E035AB1C5F36F100353DBB /* MHWeekDayThumbnailView.m in Sources */,
 				50D38D351C5A089D00D46B57 /* UIView+ViewFrameGeometry.m in Sources */,
 				50FC524F1C68383200BFB276 /* MHStorageManager.m in Sources */,
 				50D38D471C5F2E8600D46B57 /* MHListTableViewCell.m in Sources */,
 				50D38D4A1C5F2FDD00D46B57 /* MHTimeString.m in Sources */,
-				50D38D321C5A02E600D46B57 /* MHCreateViewController.m in Sources */,
 				50D38D2F1C5A02BB00D46B57 /* MHListViewController.m in Sources */,
 				50E035F01C5F566600353DBB /* MHLocalNotificationManager.m in Sources */,
 				50D38CEE1C59FAB200D46B57 /* main.m in Sources */,

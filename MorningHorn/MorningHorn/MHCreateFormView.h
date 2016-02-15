@@ -12,6 +12,6 @@
 
 @interface MHCreateFormView : UIView
 
-@property (nonatomic,strong) NSMutableArray *selectedWeekDayArray;
+@property (nonatomic,strong) MHWeekDayView *weekDayView;
 
 @end

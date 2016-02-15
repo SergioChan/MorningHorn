@@ -7,7 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MHHeader.h"
+#import "MHAlarm.h"
+#import "MHWeekDayCircleView.h"
 
 @interface MHWeekDayView : UIView
 
+@property (nonatomic,strong) NSMutableArray *selectedWeekDayArray;
+
+- (void)resetSelectState;
 @end

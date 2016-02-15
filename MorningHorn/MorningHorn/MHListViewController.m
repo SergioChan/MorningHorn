@@ -179,7 +179,7 @@
 {
     if([_lightTitleLabel.text isEqualToString:@"+"]) {
         // Animate from list to create form
-    
+        
         [UIView animateWithDuration:0.3f delay:0.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
             _listTableView.top = ScreenHeight;
             _createFormView.top = tableViewTopConstant;
@@ -190,6 +190,10 @@
         }];
     } else {
         // Animate from create form to list
+        
+        NSLog(@"selected week day:%@",_createFormView.weekDayView.selectedWeekDayArray);
+        
+        [_createFormView.weekDayView resetSelectState];
         
         [UIView animateWithDuration:0.3f delay:0.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
             _lightTitleLabel.text = @"+";

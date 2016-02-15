@@ -30,10 +30,10 @@
         repeatTitleLabel.textAlignment = NSTextAlignmentLeft;
         [self addSubview:repeatTitleLabel];
         
-        MHWeekDayView *weekDayView = [[MHWeekDayView alloc]initWithFrame:CGRectMake(40.0f, repeatTitleLabel.bottom + 10.0f, ScreenWidth - 80.0f, 60.0f)];
-        [self addSubview:weekDayView];
+        self.weekDayView = [[MHWeekDayView alloc]initWithFrame:CGRectMake(40.0f, repeatTitleLabel.bottom + 10.0f, ScreenWidth - 80.0f, (self.width - 140.0f)/7.0f)];
+        [self addSubview:_weekDayView];
         
-        UILabel *soundTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(40.0f, repeatTitleLabel.bottom + 100.0f, 100.0f, 23.0f)];
+        UILabel *soundTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(40.0f, _weekDayView.bottom + 40.0f, 100.0f, 23.0f)];
         soundTitleLabel.font = [UIFont fontWithName:HightlightedFontName size:20.0f];
         soundTitleLabel.textColor = MHBackgroundPurpleColor_dark;
         soundTitleLabel.text = @"SOUND";
