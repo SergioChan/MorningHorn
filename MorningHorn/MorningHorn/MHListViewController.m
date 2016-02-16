@@ -91,6 +91,20 @@
 
     self.createFormView = [[MHCreateFormView alloc] initWithFrame:CGRectMake(0.0f, ScreenHeight, ScreenWidth, ScreenHeight - _minutePickerView.bottom + 30.0f)];
     self.createFormView.backgroundColor = MHBackgroundPurpleColor;
+    
+    __weak typeof(self) weakSelf = self;
+    CGFloat t = tableViewTopConstant;
+    self.createFormView.didCancel = ^(){
+        [UIView animateWithDuration:0.3f delay:0.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
+            weakSelf.lightTitleLabel.text = @"+";
+            weakSelf.createFormView.top = ScreenHeight;
+            weakSelf.listTableView.top = t;
+        } completion:^(BOOL finished) {
+            weakSelf.hourPickerView.userInteractionEnabled = NO;
+            weakSelf.minutePickerView.userInteractionEnabled = NO;
+        }];
+    };
+    
     [self.view insertSubview:_createFormView belowSubview:minuteBackView];
     
     self.lightButton = [[UIButton alloc]initWithFrame:CGRectMake(ScreenWidth - 150.0f, ScreenHeight - 150.0f, 300.0f, 300.0f)];

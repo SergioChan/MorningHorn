@@ -12,6 +12,8 @@
 
 @interface MHCreateFormView : UIView
 
+@property (nonatomic,copy) void (^didCancel)(void);
+
 @property (nonatomic,strong) MHWeekDayView *weekDayView;
 
 @end

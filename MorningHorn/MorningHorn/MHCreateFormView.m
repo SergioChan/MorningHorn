@@ -46,7 +46,24 @@
         soundNameLabel.text = @"MORNING HORN";
         soundNameLabel.textAlignment = NSTextAlignmentLeft;
         [self addSubview:soundNameLabel];
+        
+        UIButton *cancelButton = [[UIButton alloc] initWithFrame:CGRectMake(40.0f, self.height - 50.0f, 100.0f, 30.0f)];
+        cancelButton.titleLabel.textAlignment = NSTextAlignmentLeft;
+        cancelButton.titleLabel.font = [UIFont fontWithName:HightlightedFontName size:27.0f];
+        [cancelButton setTitle:@"Cancel" forState:UIControlStateNormal];
+        [cancelButton setTitleColor:[UIColor colorWithRed:251/255.0f green:229/255.0f blue:84/255.0f alpha:1.0f] forState:UIControlStateNormal];
+        [cancelButton addTarget:self action:@selector(cancel:) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:cancelButton];
     }
     return self;
+}
+
+- (void)cancel:(id)sender
+{
+    if(self.didCancel) {
+        
+        [self.weekDayView resetSelectState];
+        self.didCancel();
+    }
 }
 @end
