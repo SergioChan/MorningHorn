@@ -103,7 +103,7 @@
     notification.hasAction = YES;
     notification.alertBody = [NSString stringWithFormat:NotificationTitle];
     
-    NSDictionary* info = [NSDictionary dictionaryWithObjects:@[alarm.alarmId,alarm] forKeys:@[@"id",@"object"]];
+    NSDictionary* info = [NSDictionary dictionaryWithObjects:@[alarm.alarmId,[alarm serializedString]] forKeys:@[@"id",@"object"]];
     notification.userInfo = info;
     
     return notification;

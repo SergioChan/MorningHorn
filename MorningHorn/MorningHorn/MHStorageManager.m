@@ -7,6 +7,7 @@
 //
 
 #import "MHStorageManager.h"
+#import "MHLocalNotificationManager.h"
 
 @interface MHStorageManager()
 {
@@ -40,10 +41,12 @@
     if([userDefault objectForKey:@"data"]) {
         NSMutableDictionary *dataDictionary = [[userDefault objectForKey:@"data"] mutableCopy];
         [dataDictionary setObject:[alarm serializedString] forKey:alarm.alarmId];
+        [[MHLocalNotificationManager sharedInstance] registerAlarm:alarm];
         [userDefault setValue:dataDictionary forKey:@"data"];
     } else {
         NSMutableDictionary *dataDictionary = [NSMutableDictionary dictionary];
         [dataDictionary setObject:[alarm serializedString] forKey:alarm.alarmId];
+        [[MHLocalNotificationManager sharedInstance] registerAlarm:alarm];
         [userDefault setObject:dataDictionary forKey:@"data"];
     }
 }
@@ -53,6 +56,7 @@
     if([userDefault objectForKey:@"data"]) {
         NSMutableDictionary *dataDictionary = [[userDefault objectForKey:@"data"] mutableCopy];
         [dataDictionary removeObjectForKey:alarmId];
+        [[MHLocalNotificationManager sharedInstance] cancelAlarm:alarmId];
         [userDefault setValue:dataDictionary forKey:@"data"];
     }
 }
@@ -65,6 +69,12 @@
         t.selected = state;
         [dataDictionary setValue:[t serializedString] forKey:alarmId];
         [userDefault setValue:dataDictionary forKey:@"data"];
+        
+        if(state) {
+            [[MHLocalNotificationManager sharedInstance] registerAlarm:t];
+        } else {
+            [[MHLocalNotificationManager sharedInstance] cancelAlarm:alarmId];
+        }
     }
 }
 

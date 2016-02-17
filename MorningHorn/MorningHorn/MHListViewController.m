@@ -227,7 +227,7 @@
     } else {
         // Animate from create form to list
         NSLog(@"selected week day:%@",_createFormView.weekDayView.selectedWeekDayArray);
-        MHAlarm *alarmToCreate = [MHAlarm alarmWithTimeString:[MHTimeString timeStringWithHour:self.selectedHour minute:self.selectedMinute] weekDayArray:[_createFormView.weekDayView.selectedWeekDayArray copy] soundName:@"" snoozeTime:0];
+        MHAlarm *alarmToCreate = [MHAlarm alarmWithTimeString:[MHTimeString timeStringWithHour:self.selectedHour minute:self.selectedMinute] weekDayArray:[_createFormView.weekDayView.selectedWeekDayArray copy] soundName:@"test.caf" snoozeTime:0];
         [self.alarmArray addObject:alarmToCreate];
         [[MHStorageManager sharedInstance] saveNewAlarm:alarmToCreate];
         [self.listTableView reloadData];

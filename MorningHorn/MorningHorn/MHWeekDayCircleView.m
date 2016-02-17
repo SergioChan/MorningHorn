@@ -36,7 +36,7 @@
         _selectedView.textColor = [UIColor whiteColor];
         _selectedView.textAlignment = NSTextAlignmentCenter;
         _selectedView.backgroundColor = [UIColor clearColor];
-        _selectedView.font = [UIFont fontWithName:HightlightedFontName size:self.height - 8.0f];
+        _selectedView.font = [UIFont fontWithName:HightlightedFontName size:self.height - 18.0f];
         switch (type) {
             case MHMonday:
                 _selectedView.text = @"M";
