@@ -23,7 +23,7 @@
         alarm.weekDayArray = [jsonDictionary objectForKey:@"weekDayArray"];
         alarm.soundName = [jsonDictionary objectForKey:@"soundName"];
         alarm.snoozeTime = [[jsonDictionary objectForKey:@"snoozeTime"] integerValue];
-        alarm.alarmId = [[jsonDictionary objectForKey:@"alarmId"] stringValue];
+        alarm.alarmId = [jsonDictionary objectForKey:@"alarmId"];
         alarm.selected = [[jsonDictionary objectForKey:@"selected"] boolValue];
         
         return alarm;

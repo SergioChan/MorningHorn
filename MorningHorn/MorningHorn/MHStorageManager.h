@@ -13,4 +13,10 @@
 
 + (MHStorageManager *) sharedInstance;
 
+- (void)saveNewAlarm:(MHAlarm *)alarm;
+- (void)deleteAlarmWithAlarmId:(NSString *)alarmId;
+- (void)changeAlarmState:(BOOL)state alarmId:(NSString *)alarmId;
+- (NSMutableArray *)getAlarmArray;
+- (void)deleteAllAlarms;
+
 @end

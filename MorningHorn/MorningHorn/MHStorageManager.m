@@ -35,23 +35,56 @@
     return self;
 }
 
-- (void)saveNewAlarm:(MHAlarm *)alram
+- (void)saveNewAlarm:(MHAlarm *)alarm
 {
     if([userDefault objectForKey:@"data"]) {
-        
+        NSMutableDictionary *dataDictionary = [[userDefault objectForKey:@"data"] mutableCopy];
+        [dataDictionary setObject:[alarm serializedString] forKey:alarm.alarmId];
+        [userDefault setValue:dataDictionary forKey:@"data"];
     } else {
-        
+        NSMutableDictionary *dataDictionary = [NSMutableDictionary dictionary];
+        [dataDictionary setObject:[alarm serializedString] forKey:alarm.alarmId];
+        [userDefault setObject:dataDictionary forKey:@"data"];
     }
 }
 
-- (void)deleteAlarmWithAlarmId:(NSInteger)alarmId
+- (void)deleteAlarmWithAlarmId:(NSString *)alarmId
 {
-    
+    if([userDefault objectForKey:@"data"]) {
+        NSMutableDictionary *dataDictionary = [[userDefault objectForKey:@"data"] mutableCopy];
+        [dataDictionary removeObjectForKey:alarmId];
+        [userDefault setValue:dataDictionary forKey:@"data"];
+    }
 }
 
-- (void)changeAlarmState:(BOOL)state
+- (void)changeAlarmState:(BOOL)state alarmId:(NSString *)alarmId
 {
-    
+    if([userDefault objectForKey:@"data"]) {
+        NSMutableDictionary *dataDictionary = [[userDefault objectForKey:@"data"] mutableCopy];
+        MHAlarm *t = [MHAlarm alarmWithSerializedString:[dataDictionary objectForKey:alarmId]];
+        t.selected = state;
+        [dataDictionary setValue:[t serializedString] forKey:alarmId];
+        [userDefault setValue:dataDictionary forKey:@"data"];
+    }
 }
 
+- (NSMutableArray *)getAlarmArray
+{
+    if([userDefault objectForKey:@"data"]) {
+        NSMutableDictionary *dataDictionary = [userDefault objectForKey:@"data"];
+        NSMutableArray *resultArray = [NSMutableArray array];
+        for(NSString *key in dataDictionary.allKeys) {
+            MHAlarm *tmp = [MHAlarm alarmWithSerializedString:[dataDictionary objectForKey:key]];
+            [resultArray addObject:tmp];
+        }
+        return resultArray;
+    } else {
+        return [NSMutableArray array];
+    }
+}
+
+- (void)deleteAllAlarms
+{
+    [userDefault setValue:[NSMutableDictionary dictionary] forKey:@"data"];
+}
 @end

@@ -61,9 +61,8 @@
 - (void)cancel:(id)sender
 {
     if(self.didCancel) {
-        
-        [self.weekDayView resetSelectState];
         self.didCancel();
+        [self.weekDayView resetSelectState];
     }
 }
 @end

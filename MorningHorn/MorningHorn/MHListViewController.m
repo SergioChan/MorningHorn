@@ -14,6 +14,7 @@
 #import "MHWheelPickerView.h"
 #import "MHWheelItemView.h"
 #import "MHCreateFormView.h"
+#import "MHStorageManager.h"
 
 @interface MHListViewController ()<MHWheelPickerViewDelegate,UITableViewDataSource,UITableViewDelegate>
 {
@@ -24,7 +25,7 @@
 @property (nonatomic, strong) UITableView       *listTableView;
 @property (nonatomic, strong) UIButton          *lightButton;
 @property (nonatomic, strong) UILabel           *lightTitleLabel;
-
+@property (nonatomic, strong) UIView            *buttonMaskView;
 @property (nonatomic, strong) MHCreateFormView  *createFormView;
 @property (nonatomic, strong) NSMutableArray    *alarmArray;
 
@@ -51,12 +52,14 @@
     [super viewDidLoad];
     
     self.view.backgroundColor = MHBackgroundPurpleColor;
-    self.alarmArray = [NSMutableArray arrayWithObjects:
-                       [MHAlarm alarmWithTimeString:[MHTimeString timeStringWithHour:9 minute:45] weekDayArray:[NSMutableArray arrayWithObjects:@(MHMonday),@(MHTuesDay),@(MHWednesday),@(MHThursDay), nil] soundName:@"" snoozeTime:0],
-                       [MHAlarm alarmWithTimeString:[MHTimeString timeStringWithHour:20 minute:30] weekDayArray:[NSMutableArray arrayWithObjects:@(MHMonday),@(MHTuesDay),@(MHSaturday),@(MHSunday), nil] soundName:@"" snoozeTime:0],
-                       [MHAlarm alarmWithTimeString:[MHTimeString timeStringWithHour:5 minute:46] weekDayArray:[NSMutableArray arrayWithObjects:@(MHMonday),@(MHTuesDay),@(MHFriday), nil] soundName:@"" snoozeTime:0],
-                       [MHAlarm alarmWithTimeString:[MHTimeString timeStringWithHour:9 minute:30] weekDayArray:[NSMutableArray arrayWithObjects:@(MHMonday),@(MHTuesDay),@(MHWednesday), nil] soundName:@"" snoozeTime:0],
-                       [MHAlarm alarmWithTimeString:[MHTimeString timeStringWithHour:7 minute:23] weekDayArray:[NSMutableArray arrayWithObjects:@(MHMonday),@(MHTuesDay),@(MHSaturday),@(MHSunday), nil] soundName:@"" snoozeTime:0],nil];
+    self.alarmArray = [[MHStorageManager sharedInstance] getAlarmArray];
+    
+//    self.alarmArray = [NSMutableArray arrayWithObjects:
+//                       [MHAlarm alarmWithTimeString:[MHTimeString timeStringWithHour:9 minute:45] weekDayArray:[NSMutableArray arrayWithObjects:@(MHMonday),@(MHTuesDay),@(MHWednesday),@(MHThursDay), nil] soundName:@"" snoozeTime:0],
+//                       [MHAlarm alarmWithTimeString:[MHTimeString timeStringWithHour:20 minute:30] weekDayArray:[NSMutableArray arrayWithObjects:@(MHMonday),@(MHTuesDay),@(MHSaturday),@(MHSunday), nil] soundName:@"" snoozeTime:0],
+//                       [MHAlarm alarmWithTimeString:[MHTimeString timeStringWithHour:5 minute:46] weekDayArray:[NSMutableArray arrayWithObjects:@(MHMonday),@(MHTuesDay),@(MHFriday), nil] soundName:@"" snoozeTime:0],
+//                       [MHAlarm alarmWithTimeString:[MHTimeString timeStringWithHour:9 minute:30] weekDayArray:[NSMutableArray arrayWithObjects:@(MHMonday),@(MHTuesDay),@(MHWednesday), nil] soundName:@"" snoozeTime:0],
+//                       [MHAlarm alarmWithTimeString:[MHTimeString timeStringWithHour:7 minute:23] weekDayArray:[NSMutableArray arrayWithObjects:@(MHMonday),@(MHTuesDay),@(MHSaturday),@(MHSunday), nil] soundName:@"" snoozeTime:0],nil];
     
     
     self.hourPickerView = [[MHWheelPickerView alloc]initWithFrame:CGRectMake(-150.0f, - (ScreenWidth + 300.0f)/2.0f - 200.0f, ScreenWidth + 300.0f, ScreenWidth + 300.0f) delegate:self type:MHPickerHour];
@@ -117,6 +120,21 @@
     [_lightButton addTarget:self action:@selector(ButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_lightButton];
     
+    UIView *buttonLayerLimitView = [[UIView alloc] initWithFrame:_lightButton.frame];
+    buttonLayerLimitView.backgroundColor = [UIColor clearColor];
+    buttonLayerLimitView.layer.masksToBounds = YES;
+    buttonLayerLimitView.userInteractionEnabled = NO;
+    buttonLayerLimitView.layer.cornerRadius = buttonLayerLimitView.width/2.0f;
+    [self.view addSubview:buttonLayerLimitView];
+    
+    self.buttonMaskView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 300.0f, 300.0f)];
+    _buttonMaskView.backgroundColor = [UIColor clearColor];
+    _buttonMaskView.layer.borderWidth = 70.0f;
+    _buttonMaskView.layer.borderColor = [UIColor whiteColor].CGColor;
+    _buttonMaskView.layer.cornerRadius = 150.0f;
+    _buttonMaskView.layer.transform = CATransform3DMakeScale(0.003f, 0.003f, 0);
+    [buttonLayerLimitView addSubview:_buttonMaskView];
+    
     self.lightTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(ScreenWidth - 110.0f, ScreenHeight - 110.0f, 100.0f, 100.0f)];
     _lightTitleLabel.text = @"+";
     _lightTitleLabel.textColor = [UIColor whiteColor];
@@ -168,6 +186,7 @@
                 MHAlarm *alarm = [self.alarmArray objectAtIndex:i];
                 if([alarm.alarmId isEqualToString:alarmId]) {
                     alarm.selected = selected;
+                    [[MHStorageManager sharedInstance] changeAlarmState:selected alarmId:alarmId];
                     [self.alarmArray replaceObjectAtIndex:i withObject:alarm];
                 }
             }
@@ -194,6 +213,9 @@
     if([_lightTitleLabel.text isEqualToString:@"+"]) {
         // Animate from list to create form
         
+        NSLog(@"fuck %@",[[MHStorageManager sharedInstance] getAlarmArray]);
+        [_buttonMaskView.layer addAnimation:[self animationForButtonMask] forKey:@"fuck"];
+        
         [UIView animateWithDuration:0.3f delay:0.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
             _listTableView.top = ScreenHeight;
             _createFormView.top = tableViewTopConstant;
@@ -204,9 +226,13 @@
         }];
     } else {
         // Animate from create form to list
-        
         NSLog(@"selected week day:%@",_createFormView.weekDayView.selectedWeekDayArray);
+        MHAlarm *alarmToCreate = [MHAlarm alarmWithTimeString:[MHTimeString timeStringWithHour:self.selectedHour minute:self.selectedMinute] weekDayArray:[_createFormView.weekDayView.selectedWeekDayArray copy] soundName:@"" snoozeTime:0];
+        [self.alarmArray addObject:alarmToCreate];
+        [[MHStorageManager sharedInstance] saveNewAlarm:alarmToCreate];
+        [self.listTableView reloadData];
         
+        [_buttonMaskView.layer addAnimation:[self animationForButtonMask] forKey:@"fuck"];
         [_createFormView.weekDayView resetSelectState];
         
         [UIView animateWithDuration:0.3f delay:0.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
@@ -220,6 +246,21 @@
     }
 }
 
+- (CABasicAnimation *)animationForButtonMask
+{
+    CABasicAnimation *scaleAnimation;
+    scaleAnimation = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
+    scaleAnimation.fromValue = [NSNumber numberWithFloat:0.003f];
+    scaleAnimation.toValue = [NSNumber numberWithFloat:3.0f];
+    scaleAnimation.duration = 0.4f;
+    scaleAnimation.cumulative = YES;
+    scaleAnimation.repeatCount = 1;
+    scaleAnimation.removedOnCompletion=YES;
+    scaleAnimation.fillMode=kCAFillModeForwards;
+    scaleAnimation.autoreverses = NO;
+    scaleAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
+    return scaleAnimation;
+}
 /*
 #pragma mark - Navigation
 
