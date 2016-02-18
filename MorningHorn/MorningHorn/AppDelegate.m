@@ -35,6 +35,8 @@
         // 通知重复提示的单位，可以是天、周、月
     }
     
+    [NSThread sleepForTimeInterval:2.0];
+    
     // Override point for customization after application launch.
     return YES;
 }

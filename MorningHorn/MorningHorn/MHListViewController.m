@@ -54,6 +54,10 @@
     self.view.backgroundColor = MHBackgroundPurpleColor;
     self.alarmArray = [[MHStorageManager sharedInstance] getAlarmArray];
     
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    NSDate *now = [NSDate date];
+    NSDateComponents *dateComponent = [calendar components:(NSCalendarUnitYear | NSCalendarUnitWeekOfYear|  NSCalendarUnitHour | NSCalendarUnitMinute| NSCalendarUnitSecond | NSCalendarUnitWeekday) fromDate: now];
+    
 //    self.alarmArray = [NSMutableArray arrayWithObjects:
 //                       [MHAlarm alarmWithTimeString:[MHTimeString timeStringWithHour:9 minute:45] weekDayArray:[NSMutableArray arrayWithObjects:@(MHMonday),@(MHTuesDay),@(MHWednesday),@(MHThursDay), nil] soundName:@"" snoozeTime:0],
 //                       [MHAlarm alarmWithTimeString:[MHTimeString timeStringWithHour:20 minute:30] weekDayArray:[NSMutableArray arrayWithObjects:@(MHMonday),@(MHTuesDay),@(MHSaturday),@(MHSunday), nil] soundName:@"" snoozeTime:0],
@@ -80,7 +84,11 @@
     _minutePickerView.userInteractionEnabled = NO;
     
     tableViewTopConstant = _minutePickerView.bottom - 30.0f;
-    self.listTableView = [[UITableView alloc]initWithFrame:CGRectMake(0.0f, _minutePickerView.bottom - 30.0f, ScreenWidth, ScreenHeight - _minutePickerView.bottom + 30.0f) style:UITableViewStylePlain];
+    
+    [self.hourPickerView updateToIndex:[dateComponent hour]  animated:NO];
+    [self.minutePickerView updateToIndex:[dateComponent minute] animated:NO];
+    
+    self.listTableView = [[UITableView alloc]initWithFrame:CGRectMake(0.0f, tableViewTopConstant, ScreenWidth, ScreenHeight - tableViewTopConstant) style:UITableViewStylePlain];
     self.listTableView.delegate = self;
     self.listTableView.dataSource = self;
     self.listTableView.backgroundColor = MHBackgroundPurpleColor;
@@ -92,7 +100,7 @@
     self.listTableView.tableFooterView = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, _listTableView.width, 130.0f)];
     [self.view insertSubview:_listTableView belowSubview:minuteBackView];
 
-    self.createFormView = [[MHCreateFormView alloc] initWithFrame:CGRectMake(0.0f, ScreenHeight, ScreenWidth, ScreenHeight - _minutePickerView.bottom + 30.0f)];
+    self.createFormView = [[MHCreateFormView alloc] initWithFrame:CGRectMake(0.0f, ScreenHeight, ScreenWidth, ScreenHeight - tableViewTopConstant)];
     self.createFormView.backgroundColor = MHBackgroundPurpleColor;
     
     __weak typeof(self) weakSelf = self;
@@ -227,7 +235,7 @@
     } else {
         // Animate from create form to list
         NSLog(@"selected week day:%@",_createFormView.weekDayView.selectedWeekDayArray);
-        MHAlarm *alarmToCreate = [MHAlarm alarmWithTimeString:[MHTimeString timeStringWithHour:self.selectedHour minute:self.selectedMinute] weekDayArray:[_createFormView.weekDayView.selectedWeekDayArray copy] soundName:@"test.caf" snoozeTime:0];
+        MHAlarm *alarmToCreate = [MHAlarm alarmWithTimeString:[MHTimeString timeStringWithHour:self.selectedHour minute:self.selectedMinute] weekDayArray:[_createFormView.weekDayView.selectedWeekDayArray copy] soundName:@"test1.caf" snoozeTime:0];
         [self.alarmArray addObject:alarmToCreate];
         [[MHStorageManager sharedInstance] saveNewAlarm:alarmToCreate];
         [self.listTableView reloadData];

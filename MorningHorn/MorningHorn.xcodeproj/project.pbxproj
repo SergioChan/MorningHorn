@@ -32,6 +32,7 @@
 		50E035F01C5F566600353DBB /* MHLocalNotificationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 50E035EF1C5F566600353DBB /* MHLocalNotificationManager.m */; };
 		50E035FD1C64EC4000353DBB /* MHSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 50E035FC1C64EC4000353DBB /* MHSwitch.m */; };
 		50E51C521C74C81C009A02AB /* test.caf in Resources */ = {isa = PBXBuildFile; fileRef = 50E51C511C74C81C009A02AB /* test.caf */; };
+		50E51C541C75D091009A02AB /* test1.caf in Resources */ = {isa = PBXBuildFile; fileRef = 50E51C531C75D091009A02AB /* test1.caf */; };
 		50FC524C1C6599EC00BFB276 /* MHWeekDayThumbnailCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50FC524B1C6599EC00BFB276 /* MHWeekDayThumbnailCircleView.m */; };
 		50FC524F1C68383200BFB276 /* MHStorageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 50FC524E1C68383200BFB276 /* MHStorageManager.m */; };
 /* End PBXBuildFile section */
@@ -104,6 +105,7 @@
 		50E035FB1C64EC4000353DBB /* MHSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHSwitch.h; sourceTree = "<group>"; };
 		50E035FC1C64EC4000353DBB /* MHSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHSwitch.m; sourceTree = "<group>"; };
 		50E51C511C74C81C009A02AB /* test.caf */ = {isa = PBXFileReference; lastKnownFileType = file; name = test.caf; path = Resource/test.caf; sourceTree = "<group>"; };
+		50E51C531C75D091009A02AB /* test1.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = test1.caf; sourceTree = "<group>"; };
 		50FC524A1C6599EC00BFB276 /* MHWeekDayThumbnailCircleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHWeekDayThumbnailCircleView.h; sourceTree = "<group>"; };
 		50FC524B1C6599EC00BFB276 /* MHWeekDayThumbnailCircleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MHWeekDayThumbnailCircleView.m; sourceTree = "<group>"; };
 		50FC524D1C68383200BFB276 /* MHStorageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MHStorageManager.h; sourceTree = "<group>"; };
@@ -270,6 +272,7 @@
 		50E035FA1C60D5AC00353DBB /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				50E51C531C75D091009A02AB /* test1.caf */,
 				50E51C511C74C81C009A02AB /* test.caf */,
 			);
 			name = Resource;
@@ -379,6 +382,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				50E51C521C74C81C009A02AB /* test.caf in Resources */,
+				50E51C541C75D091009A02AB /* test1.caf in Resources */,
 				50D38CFC1C59FAB200D46B57 /* LaunchScreen.storyboard in Resources */,
 				50D38CF91C59FAB200D46B57 /* Assets.xcassets in Resources */,
 				50D38CF71C59FAB200D46B57 /* Main.storyboard in Resources */,

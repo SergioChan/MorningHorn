@@ -25,5 +25,5 @@
 #define HourFontSize 55.0f
 #define HightlightedFontName @"Arial Rounded MT Bold"
 
-#define NotificationTitle @"Horn is rising!"
+#define NotificationTitle @"号角正在响起!"
 #endif /* MHHeader_h */
