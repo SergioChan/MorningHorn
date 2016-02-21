@@ -92,10 +92,9 @@
     self.listTableView.showsHorizontalScrollIndicator = NO;
     self.listTableView.showsVerticalScrollIndicator = NO;
     self.listTableView.bounces = YES;
-    UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, _listTableView.width, 80.0f)];
-    headerView.backgroundColor = MHBackgroundPurpleColor;
+
     
-    self.listTableView.tableHeaderView = headerView;
+    self.listTableView.tableHeaderView = [self tableViewFooterView];
     self.listTableView.tableFooterView = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, _listTableView.width, 130.0f)];
     [self.view insertSubview:_listTableView belowSubview:minuteBackView];
 
@@ -275,14 +274,22 @@
     scaleAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
     return scaleAnimation;
 }
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (UIView *)tableViewFooterView
+{
+    UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, _listTableView.width, 80.0f)];
+    headerView.backgroundColor = MHBackgroundPurpleColor;
+    
+    UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0.0f, -30.0f, headerView.width, 40.0f)];
+    titleLabel.font = [UIFont fontWithName:HightlightedFontName size:17.0f];
+    titleLabel.textColor = MHBackgroundYellowColor;
+    titleLabel.textAlignment = NSTextAlignmentCenter;
+    titleLabel.numberOfLines = 0;
+    
+    titleLabel.text = @" - This is a warm and simple Alarm App \r\n Lovely created by Github@SergioChan";
+    [headerView addSubview:titleLabel];
+    
+    return headerView;
 }
-*/
 
 @end
