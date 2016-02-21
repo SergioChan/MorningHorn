@@ -58,13 +58,6 @@
     NSDate *now = [NSDate date];
     NSDateComponents *dateComponent = [calendar components:(NSCalendarUnitYear | NSCalendarUnitWeekOfYear|  NSCalendarUnitHour | NSCalendarUnitMinute| NSCalendarUnitSecond | NSCalendarUnitWeekday) fromDate: now];
     
-//    self.alarmArray = [NSMutableArray arrayWithObjects:
-//                       [MHAlarm alarmWithTimeString:[MHTimeString timeStringWithHour:9 minute:45] weekDayArray:[NSMutableArray arrayWithObjects:@(MHMonday),@(MHTuesDay),@(MHWednesday),@(MHThursDay), nil] soundName:@"" snoozeTime:0],
-//                       [MHAlarm alarmWithTimeString:[MHTimeString timeStringWithHour:20 minute:30] weekDayArray:[NSMutableArray arrayWithObjects:@(MHMonday),@(MHTuesDay),@(MHSaturday),@(MHSunday), nil] soundName:@"" snoozeTime:0],
-//                       [MHAlarm alarmWithTimeString:[MHTimeString timeStringWithHour:5 minute:46] weekDayArray:[NSMutableArray arrayWithObjects:@(MHMonday),@(MHTuesDay),@(MHFriday), nil] soundName:@"" snoozeTime:0],
-//                       [MHAlarm alarmWithTimeString:[MHTimeString timeStringWithHour:9 minute:30] weekDayArray:[NSMutableArray arrayWithObjects:@(MHMonday),@(MHTuesDay),@(MHWednesday), nil] soundName:@"" snoozeTime:0],
-//                       [MHAlarm alarmWithTimeString:[MHTimeString timeStringWithHour:7 minute:23] weekDayArray:[NSMutableArray arrayWithObjects:@(MHMonday),@(MHTuesDay),@(MHSaturday),@(MHSunday), nil] soundName:@"" snoozeTime:0],nil];
-    
     
     self.hourPickerView = [[MHWheelPickerView alloc]initWithFrame:CGRectMake(-150.0f, - (ScreenWidth + 300.0f)/2.0f - 200.0f, ScreenWidth + 300.0f, ScreenWidth + 300.0f) delegate:self type:MHPickerHour];
 
@@ -85,8 +78,11 @@
     
     tableViewTopConstant = _minutePickerView.bottom - 30.0f;
     
-    [self.hourPickerView updateToIndex:[dateComponent hour]  animated:NO];
-    [self.minutePickerView updateToIndex:[dateComponent minute] animated:NO];
+    self.selectedHour = [dateComponent hour];
+    self.selectedMinute = [dateComponent minute];
+    
+    [self.hourPickerView updateToIndex:self.selectedHour  animated:NO];
+    [self.minutePickerView updateToIndex:self.selectedMinute animated:NO];
     
     self.listTableView = [[UITableView alloc]initWithFrame:CGRectMake(0.0f, tableViewTopConstant, ScreenWidth, ScreenHeight - tableViewTopConstant) style:UITableViewStylePlain];
     self.listTableView.delegate = self;
@@ -96,7 +92,10 @@
     self.listTableView.showsHorizontalScrollIndicator = NO;
     self.listTableView.showsVerticalScrollIndicator = NO;
     self.listTableView.bounces = YES;
-    self.listTableView.tableHeaderView = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, _listTableView.width, 80.0f)];
+    UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, _listTableView.width, 80.0f)];
+    headerView.backgroundColor = MHBackgroundPurpleColor;
+    
+    self.listTableView.tableHeaderView = headerView;
     self.listTableView.tableFooterView = [[UIView alloc]initWithFrame:CGRectMake(0.0f, 0.0f, _listTableView.width, 130.0f)];
     [self.view insertSubview:_listTableView belowSubview:minuteBackView];
 
@@ -198,6 +197,13 @@
                     [self.alarmArray replaceObjectAtIndex:i withObject:alarm];
                 }
             }
+        };
+        
+        cell.didDeleteAlarm = ^(MHAlarm *alarm) {
+            [[MHStorageManager sharedInstance] deleteAlarmWithAlarmId:alarm.alarmId];
+            NSInteger index = [self.alarmArray indexOfObject:alarm];
+            [self.alarmArray removeObject:alarm];
+            [self.listTableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:0]] withRowAnimation:UITableViewRowAnimationTop];
         };
     }
     cell.alarmModel = [self.alarmArray objectAtIndex:indexPath.row];

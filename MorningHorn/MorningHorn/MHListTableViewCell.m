@@ -8,6 +8,13 @@
 
 #import "MHListTableViewCell.h"
 
+@interface MHListTableViewCell()
+{
+    UIPanGestureRecognizer *pan;
+}
+
+@end
+
 @implementation MHListTableViewCell
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -29,6 +36,16 @@
         
         self.alarmSwitch = [[MHSwitch alloc]initWithFrame:CGRectMake(self.width - 100.0f, self.height/4.0f, 60.0f, (self.height/4.0f) * 3.0f)];
         [self.contentView addSubview:_alarmSwitch];
+        
+        self.deleteButton = [[UIButton alloc] initWithFrame:CGRectZero];
+        [_deleteButton setBackgroundColor:[UIColor colorWithRed:75/255.0f green:31/255.0f blue:156/255.0f alpha:1.0f]];
+        [_deleteButton setBackgroundImage:[UIImage imageNamed:@"delete"] forState:UIControlStateNormal];
+        [_deleteButton addTarget:self action:@selector(deleteButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+        [self.contentView addSubview:_deleteButton];
+        
+        pan = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(panGestureRecognizerHandler:)];
+        pan.delegate = self;
+        [self addGestureRecognizer:pan];
     }
     return self;
 }
@@ -36,6 +53,7 @@
 - (void)layoutSubviews
 {
     self.alarmSwitch.frame = CGRectMake(self.width - 100.0f, self.height/4.0f, 60.0f, (self.height/4.0f) * 3.0f);
+    self.deleteButton.frame = CGRectMake(self.width, self.height/4.0f, self.height/3.0f, self.height/3.0f);
     self.alarmSwitch.alarmId = self.alarmModel.alarmId;
     
     self.dateLabel.text = [self.alarmModel.timeString serializedString];
@@ -47,6 +65,54 @@
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+}
+
+- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
+{
+    if(pan == gestureRecognizer) {
+        CGPoint point = [pan translationInView:self];
+        return fabs(point.x) > 0;
+    } else {
+        return YES;
+    }
+}
+
+- (void)panGestureRecognizerHandler:(UIPanGestureRecognizer *)gestureRecognizer
+{
+    switch (gestureRecognizer.state) {
+        case UIGestureRecognizerStateChanged:
+        {
+            CGPoint point = [gestureRecognizer translationInView:self];
+            CGFloat offset = point.x;
+            if (offset < -0) {
+                if(self.alarmSwitch.left < self.width) {
+                    [UIView animateWithDuration:0.3f delay:0.0f usingSpringWithDamping:0.5f initialSpringVelocity:0.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
+                        self.deleteButton.left = self.width - 90.0f;
+                        self.alarmSwitch.left = self.width + 20.0f;
+                    } completion:^(BOOL finished) {
+                    }];
+                }
+            } else if (offset > 0) {
+                if(self.deleteButton.left < self.width) {
+                    [UIView animateWithDuration:0.3f delay:0.0f usingSpringWithDamping:0.5f initialSpringVelocity:0.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
+                        self.deleteButton.left = self.width + 20.0f;
+                        self.alarmSwitch.left = self.width - 100.0f;
+                    } completion:^(BOOL finished) {
+                    }];
+                }
+            }
+            break;
+        }
+        default:
+            break;
+    }
+}
+
+- (void)deleteButtonPressed:(id)sender
+{
+    if(self.didDeleteAlarm) {
+        self.didDeleteAlarm(self.alarmModel);
+    }
 }
 
 @end

@@ -14,9 +14,13 @@
 
 @interface MHListTableViewCell : UITableViewCell
 
-@property (nonatomic,strong) UILabel *dateLabel;
-@property (nonatomic,strong) MHAlarm *alarmModel;
-@property (nonatomic,strong) MHWeekDayThumbnailView *weekDayView;
-@property (nonatomic,strong) MHSwitch *alarmSwitch;
+@property (nonatomic,copy) void (^didDeleteAlarm)(MHAlarm *alarm);
+
+@property (nonatomic,strong) UILabel                    *dateLabel;
+@property (nonatomic,strong) UIButton                   *deleteButton;
+
+@property (nonatomic,strong) MHAlarm                    *alarmModel;
+@property (nonatomic,strong) MHWeekDayThumbnailView     *weekDayView;
+@property (nonatomic,strong) MHSwitch                   *alarmSwitch;
 
 @end
