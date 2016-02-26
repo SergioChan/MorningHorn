@@ -345,6 +345,7 @@
 				TargetAttributes = {
 					50D38CE81C59FAB200D46B57 = {
 						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = Q8H99663FH;
 					};
 					50D38D011C59FAB200D46B57 = {
 						CreatedOnToolsVersion = 7.2;
@@ -569,10 +570,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Yuheng Chen (Q8H99663FH)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Yuheng Chen (Q8H99663FH)";
 				INFOPLIST_FILE = MorningHorn/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = sergio.chan.MorningHorn;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sergiochan.morninghorn;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -582,10 +585,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Yuheng Chen (Q8H99663FH)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Yuheng Chen (Q8H99663FH)";
 				INFOPLIST_FILE = MorningHorn/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = sergio.chan.MorningHorn;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sergiochan.morninghorn;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
